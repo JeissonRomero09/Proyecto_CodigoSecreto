@@ -51,7 +51,7 @@ public class MenuJuegoControlador {
     public void irAPantallaJuego(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/edu/co/poligran/vista/PantallaJuego.fxml")
+                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/PantallaJuego.fxml")
             );
 
             Parent root = loader.load();
@@ -74,7 +74,7 @@ public class MenuJuegoControlador {
     public void cerrarSesion(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(
-                getClass().getResource("/edu/co/poligran/vista/MenuPrincipal.fxml")
+                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuPrincipal.fxml")
             );
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

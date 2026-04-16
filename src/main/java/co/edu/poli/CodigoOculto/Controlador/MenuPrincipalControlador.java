@@ -99,7 +99,7 @@ public class MenuPrincipalControlador {
     private void irMenuJuego(ActionEvent event, Jugador jugador) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/co/edu/poli/CodigoOculto/vista/MenuJuego.fxml")
+                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml")
             );
             Parent root = loader.load();
 

@@ -16,7 +16,7 @@ public class TestConexion {
 
 		Connection cn = ConexionBD.conectar();
 
-		assertNotNull(cn, "❌ La conexión a la base de datos es null");
+		assertNotNull(cn, " La conexión a la base de datos es null");
 
 	}
 
@@ -26,7 +26,7 @@ public class TestConexion {
 
 		Connection cn = ConexionBD.conectar();
 
-		assertFalse(cn.isClosed(), "❌ La conexión está cerrada");
+		assertFalse(cn.isClosed(), " La conexión está cerrada");
 
 		cn.close();
 	}
@@ -39,7 +39,7 @@ public class TestConexion {
 
 		cn.close();
 
-		assertTrue(cn.isClosed(), "❌ La conexión no se cerró correctamente");
+		assertTrue(cn.isClosed(), " La conexión no se cerró correctamente");
 	}
 
 	// Verifica múltiples conexiones
@@ -52,7 +52,7 @@ public class TestConexion {
 		assertNotNull(cn1);
 		assertNotNull(cn2);
 
-		assertNotSame(cn1, cn2, "❌ Las conexiones no deberían ser la misma instancia");
+		assertNotSame(cn1, cn2, " Las conexiones no deberían ser la misma instancia");
 	}
 
 }
