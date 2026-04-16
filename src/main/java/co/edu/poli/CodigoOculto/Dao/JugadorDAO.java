@@ -11,70 +11,47 @@ public class JugadorDAO {
         this.conexion = conexion;
     }
 
-    public Jugador buscarJugador(String nombre) {
-        try {
-            String sql = "SELECT * FROM jugador WHERE nombre = ?";
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                return new Jugador(
-                    rs.getInt("id"),
-                    rs.getString("nombre")
-                );
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+    //  Buscar por nombre
     public Jugador buscarJugadorPorId(int id) {
-        try {
-            String sql = "SELECT * FROM jugador WHERE id = ?";
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, id);
 
+        String sql = "SELECT * FROM jugador WHERE id = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 return new Jugador(
-                    rs.getInt("id"),
-                    rs.getString("nombre")
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getInt("puntaje"),
+                        rs.getBoolean("es_invitado")
                 );
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
+    // 💾 Guardar
     public boolean guardarJugador(Jugador jugador) {
-        try {
-            String nombre = jugador.getNombre();
 
-            if (nombre == null || nombre.trim().isEmpty()) {
-                return false;
-            }
+        String sql = "INSERT INTO jugador (nombre, puntaje, es_invitado) VALUES (?, ?, ?)";
 
-            String sql = "INSERT INTO jugador (nombre) VALUES (?)";
+        try (PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            PreparedStatement ps = conexion.prepareStatement(
-                sql,
-                Statement.RETURN_GENERATED_KEYS
-            );
-
-            ps.setString(1, nombre);
+            ps.setString(1, jugador.getNombre());
+            ps.setInt(2, jugador.getPuntaje());
+            ps.setBoolean(3, jugador.isEsInvitado());
 
             int filas = ps.executeUpdate();
 
             if (filas > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
-
                 if (rs.next()) {
                     jugador.setId(rs.getInt(1));
                 }
@@ -84,15 +61,37 @@ public class JugadorDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return false;
     }
 
-    public boolean existeNombre(String nombre) {
-        try {
-            String sql = "SELECT id FROM jugador WHERE nombre = ?";
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre);
+    // 🔄 Actualizar puntaje
+    public boolean actualizarPuntaje(Jugador jugador) {
 
+        String sql = "UPDATE jugador SET puntaje = ? WHERE id = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, jugador.getPuntaje());
+            ps.setInt(2, jugador.getId());
+
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    // ✔ Verificar existencia
+    public boolean existeNombre(String nombre) {
+
+        String sql = "SELECT id FROM jugador WHERE nombre = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
 
             return rs.next();
@@ -100,6 +99,7 @@ public class JugadorDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return false;
     }
 }
