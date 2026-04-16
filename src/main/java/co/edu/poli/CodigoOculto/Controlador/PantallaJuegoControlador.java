@@ -5,6 +5,7 @@ import co.edu.poli.CodigoOculto.Modelo.Temporizador;
 import co.edu.poli.CodigoOculto.Modelo.Jugador;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -31,299 +32,315 @@ import javafx.scene.Parent;
 import javafx.scene.input.KeyCode;
 import javafx.application.Platform;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 public class PantallaJuegoControlador {
 
-	@FXML
-	private Text txtId;
-	@FXML
-	private Text txtId1;
-	@FXML
-	private GridPane gridCasillas;
+    @FXML
+    private Text txtId;
 
-	private Partida partida = new Partida();
-	private Temporizador temporizador = new Temporizador();
-	private Timeline timeline;
-	private Jugador jugador;
+    @FXML
+    private Text txtId1;
 
-	public void setJugador(Jugador jugador) {
-		this.jugador = jugador;
-		if (txtId != null) {
-			txtId.setText("Name: " + jugador.getNombre());
-		}
-	}
+    @FXML
+    private GridPane gridCasillas;
 
-	@FXML
-	public void initialize() {
-		iniciarTemporizador();
-		Platform.runLater(this::configurarTeclado);
-	}
+    private Partida partida = new Partida();
+    private Temporizador temporizador = new Temporizador();
+    private Timeline timeline;
+    private Jugador jugador;
 
-	// =========================
-	// TECLADO
-	// =========================
-	private void configurarTeclado() {
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+        if (txtId != null) {
+            txtId.setText("Name: " + jugador.getNombre());
+        }
+    }
 
-		Scene scene = gridCasillas.getScene();
-		if (scene == null)
-			return;
+    @FXML
+    private void irMenuJugador(ActionEvent event) {
 
-		scene.setOnKeyPressed(event -> {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar salida");
+        alert.setHeaderText("¿Deseas terminar la partida?");
+        alert.setContentText("Si sales ahora perderás el progreso.");
 
-			KeyCode code = event.getCode();
+        Optional<ButtonType> result = alert.showAndWait();
 
-			if (code.isDigitKey()) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
 
-				String valor = event.getText();
+            try {
+                if (timeline != null) {
+                    timeline.stop();
+                }
 
-				int fila = partida.getFilaActual();
-				int col = partida.getColumnaActual();
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
 
-				if (partida.realizarIntento(valor)) {
+                Parent root = loader.load();
 
-					Button casilla = getNode(fila, col);
-					if (casilla != null) {
-						casilla.setText(valor);
-					}
-				}
-			}
+                MenuJuegoControlador controller = loader.getController();
+                controller.setJugador(jugador);
 
-			if (code == KeyCode.ENTER) {
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
 
-				String estado = partida.procesarIntento();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-				pintarResultado(partida.getUltimoResultado());
+    @FXML
+    public void initialize() {
+        iniciarTemporizador();
+        Platform.runLater(this::configurarTeclado);
+    }
 
-				switch (estado) {
+    private void configurarTeclado() {
 
-				case "GANASTE":
-					mostrarAlertaYReiniciar("¡GANASTE!");
-					break;
+        Scene scene = gridCasillas.getScene();
+        if (scene == null)
+            return;
 
-				case "PERDISTE":
-					mostrarAlertaYReiniciar("PERDISTE\nCombinación: " + Arrays.toString(partida.getCombinacion()));
-					break;
+        scene.setOnKeyPressed(event -> {
 
-				case "CONTINUA":
-					iniciarTemporizador();
-					break;
-				}
-			}
-		});
+            KeyCode code = event.getCode();
 
-		gridCasillas.requestFocus();
-	}
+            if (code.isDigitKey()) {
 
-	// =========================
-	// TIMER (CORREGIDO MVC)
-	// =========================
-	private void iniciarTemporizador() {
+                String valor = event.getText();
 
-		if (timeline != null) {
-			timeline.stop();
-		}
+                int fila = partida.getFilaActual();
+                int col = partida.getColumnaActual();
 
-		temporizador.reiniciar();
-		actualizarTiempo();
+                if (partida.realizarIntento(valor)) {
 
-		timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+                    Button casilla = getNode(fila, col);
+                    if (casilla != null) {
+                        casilla.setText(valor);
+                    }
+                }
+            }
 
-			temporizador.decrementar();
-			actualizarTiempo();
+            if (code == KeyCode.ENTER) {
 
-			if (temporizador.tiempoAgotado()) {
+                String estado = partida.procesarIntento();
 
-				timeline.stop();
+                pintarResultado(partida.getUltimoResultado());
 
-				// 🔥 SOLO MODELO DECIDE
-				String estado = partida.tiempoAgotado();
+                switch (estado) {
 
-				// 🔥 SOLO UI
-				pintarFilaAnulada(partida.getFilaEvaluada());
+                    case "GANASTE":
+                        mostrarAlertaYReiniciar("¡GANASTE!");
+                        break;
 
-				if (estado.equals("PERDISTE")) {
-					mostrarAlertaYReiniciar("PERDISTE");
-				} else {
-					iniciarTemporizador();
-				}
-			}
-		}));
+                    case "PERDISTE":
+                        mostrarAlertaYReiniciar(
+                                "PERDISTE\nCombinación: " + Arrays.toString(partida.getCombinacion()));
+                        break;
 
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.play();
-	}
+                    case "CONTINUA":
+                        iniciarTemporizador();
+                        break;
+                }
+            }
+        });
 
-	// =========================
-	// UI: FILA ANULADA
-	// =========================
-	private void pintarFilaAnulada(int fila) {
+        gridCasillas.requestFocus();
+    }
 
-		for (int i = 0; i < 5; i++) {
+    private void iniciarTemporizador() {
 
-			Button casilla = getNode(fila, i);
-			if (casilla == null)
-				continue;
+        if (timeline != null) {
+            timeline.stop();
+        }
 
-			casilla.setText("0");
+        temporizador.reiniciar();
+        actualizarTiempo();
 
-			casilla.setStyle("-fx-background-color: gray;");
-		}
-	}
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
 
-	// =========================
-	// UI: RESULTADOS
-	// =========================
-	private void pintarResultado(String[] resultado) {
+            temporizador.decrementar();
+            actualizarTiempo();
 
-		int fila = partida.getFilaEvaluada();
+            if (temporizador.tiempoAgotado()) {
 
-		for (int i = 0; i < 5; i++) {
+                timeline.stop();
 
-			Button casilla = getNode(fila, i);
-			if (casilla == null)
-				continue;
+                String estado = partida.tiempoAgotado();
 
-			switch (resultado[i]) {
-			case "VERDE":
-				casilla.setStyle("-fx-background-color: #90EE90;");
-				break;
+                pintarFilaAnulada(partida.getFilaEvaluada());
 
-			case "AMARILLO":
-				casilla.setStyle("-fx-background-color: #FFD966;");
-				break;
+                if (estado.equals("PERDISTE")) {
+                    mostrarAlertaYReiniciar("PERDISTE");
+                } else {
+                    iniciarTemporizador();
+                }
+            }
+        }));
 
-			default:
-				casilla.setStyle("-fx-background-color: gray;");
-			}
-		}
-	}
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
 
-	// =========================
-	// ENTER BUTTON
-	// =========================
-	@FXML
-	private void presionarBoton(ActionEvent event) {
+    private void pintarFilaAnulada(int fila) {
 
-		Button btn = (Button) event.getSource();
-		String texto = btn.getText();
+        for (int i = 0; i < 5; i++) {
 
-		if (texto.equalsIgnoreCase("Enter")) {
+            Button casilla = getNode(fila, i);
+            if (casilla == null)
+                continue;
 
-			String estado = partida.procesarIntento();
+            casilla.setText("0");
+            casilla.setStyle("-fx-background-color: gray;");
+        }
+    }
 
-			pintarResultado(partida.getUltimoResultado());
+    private void pintarResultado(String[] resultado) {
 
-			switch (estado) {
+        int fila = partida.getFilaEvaluada();
 
-			case "GANASTE":
-				mostrarAlertaYReiniciar("¡GANASTE!");
-				break;
+        for (int i = 0; i < 5; i++) {
 
-			case "PERDISTE":
-				mostrarAlertaYReiniciar("PERDISTE\nCombinación: " + Arrays.toString(partida.getCombinacion()));
-				break;
+            Button casilla = getNode(fila, i);
+            if (casilla == null)
+                continue;
 
-			case "CONTINUA":
-				iniciarTemporizador();
-				break;
-			}
-			return;
-		}
+            switch (resultado[i]) {
 
-		int fila = partida.getFilaActual();
-		int col = partida.getColumnaActual();
+                case "VERDE":
+                    casilla.setStyle("-fx-background-color: #90EE90;");
+                    break;
 
-		if (partida.realizarIntento(texto)) {
+                case "AMARILLO":
+                    casilla.setStyle("-fx-background-color: #FFD966;");
+                    break;
 
-			Button casilla = getNode(fila, col);
-			if (casilla != null) {
-				casilla.setText(texto);
-			}
-		}
-	}
+                default:
+                    casilla.setStyle("-fx-background-color: gray;");
+            }
+        }
+    }
 
-	// =========================
-	// CLICK CASILLA
-	// =========================
-	@FXML
-	private void seleccionarCasilla(MouseEvent event) {
+    @FXML
+    private void presionarBoton(ActionEvent event) {
 
-		Button casilla = (Button) event.getSource();
+        Button btn = (Button) event.getSource();
+        String texto = btn.getText();
 
-		Integer fila = GridPane.getRowIndex(casilla);
-		Integer col = GridPane.getColumnIndex(casilla);
+        if (texto.equalsIgnoreCase("Enter")) {
 
-		if (fila != null && fila == partida.getFilaActual()) {
-			partida.moverCursorManual(col == null ? 0 : col);
-		}
-	}
+            String estado = partida.procesarIntento();
 
-	// =========================
-	// UTIL
-	// =========================
-	private void actualizarTiempo() {
-		txtId1.setText(temporizador.getTiempoFormateado());
-	}
+            pintarResultado(partida.getUltimoResultado());
 
-	private Button getNode(int fila, int columna) {
+            switch (estado) {
 
-		for (Node node : gridCasillas.getChildren()) {
+                case "GANASTE":
+                    mostrarAlertaYReiniciar("¡GANASTE!");
+                    break;
 
-			Integer f = GridPane.getRowIndex(node);
-			Integer c = GridPane.getColumnIndex(node);
+                case "PERDISTE":
+                    mostrarAlertaYReiniciar(
+                            "PERDISTE\nCombinación: " + Arrays.toString(partida.getCombinacion()));
+                    break;
 
-			if ((f == null ? 0 : f) == fila && (c == null ? 0 : c) == columna) {
-				return (Button) node;
-			}
-		}
-		return null;
-	}
+                case "CONTINUA":
+                    iniciarTemporizador();
+                    break;
+            }
+            return;
+        }
 
-	// =========================
-	// ALERTA + RESET
-	// =========================
-	private void mostrarAlertaYReiniciar(String mensaje) {
+        int fila = partida.getFilaActual();
+        int col = partida.getColumnaActual();
 
-		if (timeline != null) {
-			timeline.stop();
-		}
+        if (partida.realizarIntento(texto)) {
 
-		Stage popup = new Stage();
-		popup.initStyle(StageStyle.UNDECORATED);
+            Button casilla = getNode(fila, col);
+            if (casilla != null) {
+                casilla.setText(texto);
+            }
+        }
+    }
 
-		Label texto = new Label(mensaje);
-		texto.setStyle("-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
+    @FXML
+    private void seleccionarCasilla(MouseEvent event) {
 
-		StackPane root = new StackPane(texto);
-		root.setAlignment(Pos.CENTER);
-		root.setStyle("-fx-background-color: rgba(0,0,0,0.8); -fx-padding: 30;");
+        Button casilla = (Button) event.getSource();
 
-		Scene scene = new Scene(root);
-		popup.setScene(scene);
-		popup.show();
+        Integer fila = GridPane.getRowIndex(casilla);
+        Integer col = GridPane.getColumnIndex(casilla);
 
-		PauseTransition pausa = new PauseTransition(Duration.seconds(5));
+        if (fila != null && fila == partida.getFilaActual()) {
+            partida.moverCursorManual(col == null ? 0 : col);
+        }
+    }
 
-		pausa.setOnFinished(e -> {
-			try {
-				popup.close();
+    private void actualizarTiempo() {
+        txtId1.setText(temporizador.getTiempoFormateado());
+    }
 
-				FXMLLoader loader = new FXMLLoader(
-						getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
+    private Button getNode(int fila, int columna) {
 
-				Parent rootMenu = loader.load();
+        for (Node node : gridCasillas.getChildren()) {
 
-				MenuJuegoControlador controller = loader.getController();
-				controller.setJugador(jugador);
+            Integer f = GridPane.getRowIndex(node);
+            Integer c = GridPane.getColumnIndex(node);
 
-				Stage stage = (Stage) gridCasillas.getScene().getWindow();
-				stage.setScene(new Scene(rootMenu));
-				stage.show();
+            if ((f == null ? 0 : f) == fila && (c == null ? 0 : c) == columna) {
+                return (Button) node;
+            }
+        }
+        return null;
+    }
 
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		});
+    private void mostrarAlertaYReiniciar(String mensaje) {
 
-		pausa.play();
-	}
+        if (timeline != null) {
+            timeline.stop();
+        }
+
+        Stage popup = new Stage();
+        popup.initStyle(StageStyle.UNDECORATED);
+
+        Label texto = new Label(mensaje);
+        texto.setStyle("-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
+
+        StackPane root = new StackPane(texto);
+        root.setAlignment(Pos.CENTER);
+        root.setStyle("-fx-background-color: rgba(0,0,0,0.8); -fx-padding: 30;");
+
+        Scene scene = new Scene(root);
+        popup.setScene(scene);
+        popup.show();
+
+        PauseTransition pausa = new PauseTransition(Duration.seconds(5));
+
+        pausa.setOnFinished(e -> {
+            try {
+                popup.close();
+
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
+
+                Parent rootMenu = loader.load();
+
+                MenuJuegoControlador controller = loader.getController();
+                controller.setJugador(jugador);
+
+                Stage stage = (Stage) gridCasillas.getScene().getWindow();
+                stage.setScene(new Scene(rootMenu));
+                stage.show();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        pausa.play();
+    }
 }
