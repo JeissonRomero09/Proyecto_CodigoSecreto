@@ -37,7 +37,7 @@ public class JugadorDAO {
         return null;
     }
 
-    // 💾 Guardar
+    //  Guardar
     public boolean guardarJugador(Jugador jugador) {
 
         String sql = "INSERT INTO jugador (nombre, puntaje, es_invitado) VALUES (?, ?, ?)";
@@ -65,7 +65,7 @@ public class JugadorDAO {
         return false;
     }
 
-    // 🔄 Actualizar puntaje
+    //  Actualizar puntaje
     public boolean actualizarPuntaje(Jugador jugador) {
 
         String sql = "UPDATE jugador SET puntaje = ? WHERE id = ?";
@@ -84,7 +84,7 @@ public class JugadorDAO {
         return false;
     }
 
-    // ✔ Verificar existencia
+    //  Verificar existencia
     public boolean existeNombre(String nombre) {
 
         String sql = "SELECT id FROM jugador WHERE nombre = ?";

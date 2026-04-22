@@ -46,7 +46,7 @@ public class PantallaJuegoControlador {
     @FXML
     private GridPane gridCasillas;
 
-    private Partida partida = new Partida();
+    private Partida partida = new Partida();// por que se incia en 0 llevar al construcctor 
     private Temporizador temporizador = new Temporizador();
     private Timeline timeline;
     private Jugador jugador;

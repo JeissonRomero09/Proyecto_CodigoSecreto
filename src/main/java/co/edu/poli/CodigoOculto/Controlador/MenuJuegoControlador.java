@@ -35,6 +35,26 @@ public class MenuJuegoControlador {
     public void initialize() {
         actualizarTexto();
     }
+    // =========================
+    // Como jugar
+    // =========================
+    
+    @FXML
+    public void irAComoJugar(ActionEvent event) {
+        try {
+
+            Parent root = FXMLLoader.load(
+                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/ComoJugar.fxml")
+            );
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // =========================
     // MOSTRAR DATOS

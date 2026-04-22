@@ -62,7 +62,7 @@
 			</font>
 		</Text>
 
-	
+
 		<Text fx:id="textoNombre" fill="WHITE" layoutX="14.0"
 			layoutY="45.0" text="Name :">
 			<font>
@@ -92,7 +92,8 @@
 		<Button layoutX="277.0" layoutY="222.0" prefHeight="32.0"
 			prefWidth="157.0"
 			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
-			text="Como Jugar" textFill="WHITE">
+			text="Como Jugar" textFill="WHITE" onAction="#irAComoJugar">
+
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>

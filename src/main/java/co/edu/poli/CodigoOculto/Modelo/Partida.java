@@ -1,7 +1,5 @@
 package co.edu.poli.CodigoOculto.Modelo;
 
-import java.util.Random;
-
 public class Partida {
 
 	private final int MAX_FILAS = 5;
@@ -13,27 +11,29 @@ public class Partida {
 	private boolean juegoTerminado;
 	private String[] ultimoResultado;
 
-	private int[] combinacion;
+	private NumeroSecreto numeroSecreto;
 	private int filaEvaluada;
+
+	// 🔹 NUEVO: estado del juego
+	private String estado; // "EN_CURSO", "GANADOR", "PERDEDOR"
 
 	public Partida() {
 		iniciarPartida();
 	}
+
 	public String tiempoAgotado() {
 
-	   
-	    completarFilaConCeros();
+		completarFilaConCeros();
 
-	  
-	    filaEvaluada = filaActual;
+		filaEvaluada = filaActual;
 
+		if (!intentarPasarDeFila()) {
+			juegoTerminado = true;
+			estado = "PERDEDOR"; // 🔹 agregado
+			return "PERDISTE";
+		}
 
-	    if (!intentarPasarDeFila()) {
-	        juegoTerminado = true;
-	        return "PERDISTE";
-	    }
-
-	    return "CONTINUA";
+		return "CONTINUA";
 	}
 
 	public String procesarIntento() {
@@ -47,11 +47,13 @@ public class Partida {
 
 		if (esVictoria(ultimoResultado)) {
 			juegoTerminado = true;
+			estado = "GANADOR"; // 🔹 agregado
 			return "GANASTE";
 		}
 
 		if (!intentarPasarDeFila()) {
 			juegoTerminado = true;
+			estado = "PERDEDOR"; // 🔹 agregado
 			return "PERDISTE";
 		}
 
@@ -84,16 +86,8 @@ public class Partida {
 		this.filaActual = 0;
 		this.columnaActual = 0;
 		this.juegoTerminado = false;
-		generarCombinacion();
-	}
-
-	private void generarCombinacion() {
-		combinacion = new int[MAX_COLUMNAS];
-		Random r = new Random();
-
-		for (int i = 0; i < MAX_COLUMNAS; i++) {
-			combinacion[i] = r.nextInt(9) + 1;
-		}
+		this.numeroSecreto = new NumeroSecreto(MAX_COLUMNAS);
+		this.estado = "EN_CURSO"; // 🔹 agregado
 	}
 
 	public boolean realizarIntento(String numero) {
@@ -120,7 +114,7 @@ public class Partida {
 			intento[i] = Integer.parseInt(tablero[filaEvaluada][i]);
 		}
 
-		return Validacion.validar(intento, combinacion);
+		return Validacion.validar(intento, numeroSecreto.getCombinacion());
 	}
 
 	public boolean esVictoria(String[] resultado) {
@@ -142,11 +136,13 @@ public class Partida {
 			return false;
 		}
 	}
+
 	public void setFilaEvaluada(int fila) {
 		this.filaEvaluada = fila;
 	}
+
 	public int[] getCombinacion() {
-		return combinacion;
+		return numeroSecreto.getCombinacion();
 	}
 
 	public void finalizarPartida() {
@@ -179,5 +175,10 @@ public class Partida {
 
 	public boolean isJuegoTerminado() {
 		return juegoTerminado;
+	}
+
+	// 🔹 NUEVO: getter de estado
+	public String getEstado() {
+		return estado;
 	}
 }

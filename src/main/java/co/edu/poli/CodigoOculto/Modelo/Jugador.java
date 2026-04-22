@@ -10,7 +10,7 @@ public class Jugador {
     // Constructor vacío
     public Jugador() {}
 
-    // Desde BD
+    // BD
     public Jugador(int id, String nombre, int puntaje, boolean esInvitado) {
         this.id = id;
         this.nombre = nombre;
