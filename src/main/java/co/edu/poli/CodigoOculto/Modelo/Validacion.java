@@ -8,11 +8,11 @@ public class Validacion {
         String[] resultado = new String[n];
         boolean[] usado = new boolean[n];
 
-        // Inicializar
-        for (int i = 0; i < n; i++) {
-            resultado[i] = "GRIS";
-            usado[i] = false;
-        }
+		// Inicializar
+		for (int i = 0; i < n; i++) {
+			resultado[i] = "GRIS";
+			usado[i] = false;
+		}
 
         // VERDES (posición correcta)
         for (int i = 0; i < n; i++) {

@@ -55,7 +55,7 @@ public class MenuPrincipalControlador {
         }
     }
 
-    // REGISTRO
+	// REGISTRO
     @FXML
     public void registrarJugador(ActionEvent event) {
 

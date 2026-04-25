@@ -58,40 +58,40 @@ public class PantallaJuegoControlador {
         }
     }
 
-    @FXML
-    private void irMenuJugador(ActionEvent event) {
+	@FXML
+	private void irMenuJugador(ActionEvent event) {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmar salida");
-        alert.setHeaderText("¿Deseas terminar la partida?");
-        alert.setContentText("Si sales ahora perderás el progreso.");
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Confirmar salida");
+		alert.setHeaderText("¿Deseas terminar la partida?");
+		alert.setContentText("Si sales ahora perderás el progreso.");
 
-        Optional<ButtonType> result = alert.showAndWait();
+		Optional<ButtonType> result = alert.showAndWait();
 
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+		if (result.isPresent() && result.get() == ButtonType.OK) {
 
-            try {
-                if (timeline != null) {
-                    timeline.stop();
-                }
+			try {
+				if (timeline != null) {
+					timeline.stop();
+				}
 
-                FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
+				FXMLLoader loader = new FXMLLoader(
+						getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
 
-                Parent root = loader.load();
+				Parent root = loader.load();
 
-                MenuJuegoControlador controller = loader.getController();
-                controller.setJugador(jugador);
+				MenuJuegoControlador controller = loader.getController();
+				controller.setJugador(jugador);
 
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(new Scene(root));
+				stage.show();
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
     @FXML
     public void initialize() {

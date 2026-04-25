@@ -11,32 +11,31 @@ import javafx.stage.Stage;
 
 public class ComoJugarControlador {
 
-    private Jugador jugador;
+	private Jugador jugador;
 
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
-    }
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
 
-    @FXML
-    private void irMenuJugador(ActionEvent event) {
+	@FXML
+	private void irMenuJugador(ActionEvent event) {
 
-        try {
+		try {
 
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml")
-            );
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
 
-            Parent root = loader.load();
+			Parent root = loader.load();
 
-            MenuJuegoControlador controller = loader.getController();
-            controller.setJugador(jugador); // 
+			MenuJuegoControlador controller = loader.getController();
+			controller.setJugador(jugador); //
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(new Scene(root));
+			stage.show();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

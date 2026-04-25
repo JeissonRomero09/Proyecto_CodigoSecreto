@@ -12,8 +12,7 @@ public class App extends Application {
 	public void start(Stage stage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(
-				    getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuPrincipal.fxml")
-					);
+					getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuPrincipal.fxml"));
 			System.out.println(getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuPrincipal.fxml"));
 
 			Parent root = loader.load();
