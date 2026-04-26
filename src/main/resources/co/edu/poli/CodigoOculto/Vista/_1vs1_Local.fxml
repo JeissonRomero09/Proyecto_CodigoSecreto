@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.CodigoOculto.Controlador._1vs1_LocalControlador">
+
+    <children>
+
+        <!-- Fondo -->
+        <ImageView fitHeight="531.0" fitWidth="939.0" layoutX="3.0" layoutY="6.0">
+            <image>
+                <Image url="@/co/edu/poli/CodigoOculto/Img/F_G.jpeg" />
+            </image>
+        </ImageView>
+
+        <!-- Jugador 1 -->
+        <Text fx:id="textoNombre" fill="WHITE" layoutX="14.0" layoutY="25.0" text="Name J1">
+            <font>
+                <Font name="MT Extra" size="14.0" />
+            </font>
+        </Text>
+
+        <!-- Botón iniciar partida -->
+        <Button layoutX="394.0" layoutY="176.0" onAction="#iniciarPartida" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;" text="Iniciar Partida J2" textFill="WHITE">
+
+            <font>
+                <Font name="MT Extra" size="14.0" />
+            </font>
+        </Button>
+
+        <!-- ID -->
+        <Rectangle arcHeight="40.0" arcWidth="40.0" height="31.0" layoutX="362.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" width="139.0" />
+
+        <Text fill="WHITE" layoutX="375.0" layoutY="235.0" text="ID :">
+            <font>
+                <Font name="MT Extra" size="14.0" />
+            </font>
+        </Text>
+
+        <TextField fx:id="txtId" layoutX="395.0" layoutY="215.0" prefHeight="32.0" prefWidth="185.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40; -fx-text-fill: white; -fx-padding: 8 15 8 15;">
+
+            <font>
+                <Font name="MT Extra" size="14.0" />
+            </font>
+        </TextField>
+
+        <!-- Volver -->
+        <Button layoutX="854.0" layoutY="481.0" onAction="#volverMenu" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;" text="Volver" textFill="WHITE">
+
+            <font>
+                <Font name="MT Extra" size="14.0" />
+            </font>
+        </Button>
+
+    </children>
+</AnchorPane>

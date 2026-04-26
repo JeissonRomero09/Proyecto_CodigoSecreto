@@ -37,6 +37,11 @@ import javafx.scene.control.ButtonType;
 
 public class PantallaJuegoControlador {
 
+    private Partida partida;
+    private Temporizador temporizador;
+    private Timeline timeline;
+    private Jugador jugador;
+
     @FXML
     private Text txtId;
 
@@ -46,11 +51,12 @@ public class PantallaJuegoControlador {
     @FXML
     private GridPane gridCasillas;
 
-    private Partida partida = new Partida();// por que se incia en 0 llevar al construcctor 
-    private Temporizador temporizador = new Temporizador();
-    private Timeline timeline;
-    private Jugador jugador;
+    // recibir partida
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
 
+    // recibir jugador
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
         if (txtId != null) {
@@ -58,51 +64,55 @@ public class PantallaJuegoControlador {
         }
     }
 
-	@FXML
-	private void irMenuJugador(ActionEvent event) {
-
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setTitle("Confirmar salida");
-		alert.setHeaderText("¿Deseas terminar la partida?");
-		alert.setContentText("Si sales ahora perderás el progreso.");
-
-		Optional<ButtonType> result = alert.showAndWait();
-
-		if (result.isPresent() && result.get() == ButtonType.OK) {
-
-			try {
-				if (timeline != null) {
-					timeline.stop();
-				}
-
-				FXMLLoader loader = new FXMLLoader(
-						getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
-
-				Parent root = loader.load();
-
-				MenuJuegoControlador controller = loader.getController();
-				controller.setJugador(jugador);
-
-				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				stage.setScene(new Scene(root));
-				stage.show();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
+    // inicializar vista
     @FXML
     public void initialize() {
+        temporizador = new Temporizador();
         iniciarTemporizador();
         Platform.runLater(this::configurarTeclado);
     }
 
+    // volver al menu
+    @FXML
+    private void irMenuJugador(ActionEvent event) {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar salida");
+        alert.setHeaderText("¿Deseas terminar la partida?");
+        alert.setContentText("Si sales ahora perderás el progreso.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+
+            try {
+                if (timeline != null) {
+                    timeline.stop();
+                }
+
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
+
+                Parent root = loader.load();
+
+                MenuJuegoControlador controller = loader.getController();
+                controller.setJugador(jugador);
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // configurar teclado
     private void configurarTeclado() {
 
         Scene scene = gridCasillas.getScene();
-        if (scene == null)
+        if (scene == null || partida == null)
             return;
 
         scene.setOnKeyPressed(event -> {
@@ -134,12 +144,12 @@ public class PantallaJuegoControlador {
                 switch (estado) {
 
                     case "GANASTE":
-                        mostrarAlertaYReiniciar("¡GANASTE!");
+                        mostrarAlertaYReiniciar("GANASTE");
                         break;
 
                     case "PERDISTE":
                         mostrarAlertaYReiniciar(
-                                "PERDISTE\nCombinación: " + Arrays.toString(partida.getCombinacion()));
+                                "PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
                         break;
 
                     case "CONTINUA":
@@ -152,6 +162,7 @@ public class PantallaJuegoControlador {
         gridCasillas.requestFocus();
     }
 
+    // iniciar temporizador
     private void iniciarTemporizador() {
 
         if (timeline != null) {
@@ -166,7 +177,7 @@ public class PantallaJuegoControlador {
             temporizador.decrementar();
             actualizarTiempo();
 
-            if (temporizador.tiempoAgotado()) {
+            if (temporizador.tiempoAgotado() && partida != null) {
 
                 timeline.stop();
 
@@ -186,6 +197,7 @@ public class PantallaJuegoControlador {
         timeline.play();
     }
 
+    // pintar fila anulada
     private void pintarFilaAnulada(int fila) {
 
         for (int i = 0; i < 5; i++) {
@@ -199,6 +211,7 @@ public class PantallaJuegoControlador {
         }
     }
 
+    // pintar resultado
     private void pintarResultado(String[] resultado) {
 
         int fila = partida.getFilaEvaluada();
@@ -225,8 +238,12 @@ public class PantallaJuegoControlador {
         }
     }
 
+    // boton teclado
     @FXML
     private void presionarBoton(ActionEvent event) {
+
+        if (partida == null)
+            return;
 
         Button btn = (Button) event.getSource();
         String texto = btn.getText();
@@ -240,12 +257,12 @@ public class PantallaJuegoControlador {
             switch (estado) {
 
                 case "GANASTE":
-                    mostrarAlertaYReiniciar("¡GANASTE!");
+                    mostrarAlertaYReiniciar("GANASTE");
                     break;
 
                 case "PERDISTE":
                     mostrarAlertaYReiniciar(
-                            "PERDISTE\nCombinación: " + Arrays.toString(partida.getCombinacion()));
+                            "PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
                     break;
 
                 case "CONTINUA":
@@ -267,8 +284,12 @@ public class PantallaJuegoControlador {
         }
     }
 
+    // seleccionar casilla
     @FXML
     private void seleccionarCasilla(MouseEvent event) {
+
+        if (partida == null)
+            return;
 
         Button casilla = (Button) event.getSource();
 
@@ -280,10 +301,12 @@ public class PantallaJuegoControlador {
         }
     }
 
+    // actualizar tiempo
     private void actualizarTiempo() {
         txtId1.setText(temporizador.getTiempoFormateado());
     }
 
+    // obtener nodo
     private Button getNode(int fila, int columna) {
 
         for (Node node : gridCasillas.getChildren()) {
@@ -298,6 +321,7 @@ public class PantallaJuegoControlador {
         return null;
     }
 
+    // mostrar alerta
     private void mostrarAlertaYReiniciar(String mensaje) {
 
         if (timeline != null) {

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/25"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="co.edu.poli.CodigoOculto.Controlador._1vs1_LocalMenuJuegoControlador">
+
+	<children>
+		<ImageView fitHeight="531.0" fitWidth="939.0">
+			<image>
+				<Image url="@/co/edu/poli/CodigoOculto/Img/F_G.jpeg" />
+			</image>
+		</ImageView>
+
+		<!-- BOTÓN JUGAR -->
+		<Button layoutX="391.0" layoutY="194.0"
+			onAction="#irAPantallaJuego" prefHeight="32.0" prefWidth="157.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			text="Iniciar Partida" textFill="WHITE">
+			<font>
+				<Font name="MT Extra" size="14.0" />
+			</font>
+		</Button>
+
+
+		<Text fx:id="textoNombre" fill="WHITE" layoutX="14.0"
+			layoutY="25.0" text="Name J1:">
+			<font>
+				<Font name="MT Extra" size="14.0" />
+			</font>
+		</Text>
+
+		<Button layoutX="806.0" layoutY="445.0"
+			onAction="#irAComoJugar" prefHeight="25.0" prefWidth="100.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			text="Como Jugar" textFill="WHITE">
+
+			<font>
+				<Font name="MT Extra" size="14.0" />
+			</font>
+		</Button>
+
+		<!-- CERRAR SESIÓN -->
+		<Button layoutX="796.0" layoutY="480.0"
+			onAction="#cerrarSesion" prefHeight="25.0" prefWidth="119.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			text="Cerrar Sesión J2" textFill="WHITE">
+			<font>
+				<Font name="MT Extra" size="14.0" />
+			</font>
+		</Button>
+		<Text fx:id="textoNombre1" fill="WHITE" layoutX="415.0"
+			layoutY="25.0" text="Name J2:">
+			<font>
+				<Font name="MT Extra" size="14.0" />
+			</font>
+		</Text>
+
+	</children>
+</AnchorPane>
