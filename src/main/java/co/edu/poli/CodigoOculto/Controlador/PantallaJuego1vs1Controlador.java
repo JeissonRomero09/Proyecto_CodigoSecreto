@@ -20,199 +20,223 @@ import javafx.application.Platform;
 
 public class PantallaJuego1vs1Controlador {
 
-    private PartidaLocal_Vs partidaVs;
+	private PartidaLocal_Vs partidaVs;
 
-    @FXML private GridPane gridCasillas;
-    @FXML private GridPane gridCasillas1;
-    @FXML private Text txtId;
-    @FXML private Text txtId1;
+	@FXML
+	private GridPane gridCasillas;
+	@FXML
+	private GridPane gridCasillas1;
+	@FXML
+	private Text txtId;
+	@FXML
+	private Text txtId1;
 
-    @FXML
-    public void initialize() {
-        Platform.runLater(this::configurarTeclado);
-    }
+	// Guardar jugadores para no perder sesión
+	private Jugador jugador1;
+	private Jugador jugador2;
 
-    public void setJugadores(Jugador j1, Jugador j2) {
+	@FXML
+	public void initialize() {
+		Platform.runLater(this::configurarTeclado);
+	}
 
-        partidaVs = new PartidaLocal_Vs();
-        partidaVs.iniciar(j1, j2);
+	public void setJugadores(Jugador j1, Jugador j2) {
 
-        txtId.setText("J1: " + j1.getNombre());
-        txtId1.setText("J2: " + j2.getNombre());
+		this.jugador1 = j1;
+		this.jugador2 = j2;
 
-        actualizarTurno();
-    }
+		partidaVs = new PartidaLocal_Vs();
+		partidaVs.iniciar(j1, j2);
 
-    private void configurarTeclado() {
+		txtId.setText("J1: " + j1.getNombre());
+		txtId1.setText("J2: " + j2.getNombre());
 
-        Scene scene = gridCasillas.getScene();
-        if (scene == null) return;
+		actualizarTurno();
+	}
 
-        scene.setOnKeyPressed(e -> {
+	private void configurarTeclado() {
 
-            if (partidaVs == null) return;
-            if (!esTurnoActivo()) return;
+		Scene scene = gridCasillas.getScene();
+		if (scene == null)
+			return;
 
-            Partida p = partidaVs.getPartidaActual();
+		scene.setOnKeyPressed(e -> {
 
-            if (e.getCode().isDigitKey()) {
+			if (partidaVs == null)
+				return;
+			if (!esTurnoActivo())
+				return;
 
-                String valor = e.getText();
+			Partida p = partidaVs.getPartidaActual();
 
-                int f = p.getFilaActual();
-                int c = p.getColumnaActual();
+			if (e.getCode().isDigitKey()) {
 
-                if (p.realizarIntento(valor)) {
-                    Button b = getNodeActivo(f, c);
-                    if (b != null) b.setText(valor);
-                }
-            }
+				String valor = e.getText();
 
-            if (e.getCode() == KeyCode.ENTER) {
-                manejarEnter();
-            }
-        });
-    }
+				int f = p.getFilaActual();
+				int c = p.getColumnaActual();
 
-    @FXML
-    private void presionarBoton(ActionEvent event) {
+				if (p.realizarIntento(valor)) {
+					Button b = getNodeActivo(f, c);
+					if (b != null)
+						b.setText(valor);
+				}
+			}
 
-        if (partidaVs == null) return;
-        if (!esTurnoActivo()) return;
+			if (e.getCode() == KeyCode.ENTER) {
+				manejarEnter();
+			}
+		});
+	}
 
-        Button btn = (Button) event.getSource();
-        String t = btn.getText();
+	@FXML
+	private void presionarBoton(ActionEvent event) {
 
-        if (t.equalsIgnoreCase("Enter")) {
-            manejarEnter();
-            return;
-        }
+		if (partidaVs == null)
+			return;
+		if (!esTurnoActivo())
+			return;
 
-        Partida p = partidaVs.getPartidaActual();
+		Button btn = (Button) event.getSource();
+		String t = btn.getText();
 
-        int f = p.getFilaActual();
-        int c = p.getColumnaActual();
+		if (t.equalsIgnoreCase("Enter")) {
+			manejarEnter();
+			return;
+		}
 
-        if (p.realizarIntento(t)) {
-            Button b = getNodeActivo(f, c);
-            if (b != null) b.setText(t);
-        }
-    }
+		Partida p = partidaVs.getPartidaActual();
 
-    private void manejarEnter() {
+		int f = p.getFilaActual();
+		int c = p.getColumnaActual();
 
-        Partida p = partidaVs.getPartidaActual();
+		if (p.realizarIntento(t)) {
+			Button b = getNodeActivo(f, c);
+			if (b != null)
+				b.setText(t);
+		}
+	}
 
-        if (!p.esFilaCompleta()) return;
+	private void manejarEnter() {
 
-        String estado = partidaVs.jugarTurno();
+		Partida p = partidaVs.getPartidaActual();
 
-        if (estado.equals("FIN")) {
-            System.out.println("Ganador: " + partidaVs.getGanador().getNombre());
-            return;
-        }
+		if (!p.esFilaCompleta())
+			return;
 
-        if (estado.equals("RONDA_COMPLETA")) {
+		String estado = partidaVs.jugarTurno();
 
-            Partida p1 = partidaVs.getPartidaJ1();
-            Partida p2 = partidaVs.getPartidaJ2();
+		if (estado.equals("FIN")) {
+			System.out.println("Ganador: " + partidaVs.getGanador().getNombre());
+			return;
+		}
 
-            pintarResultado(gridCasillas, p1.getFilaEvaluada(), p1.getUltimoResultado());
-            pintarResultado(gridCasillas1, p2.getFilaEvaluada(), p2.getUltimoResultado());
+		if (estado.equals("RONDA_COMPLETA")) {
 
-            partidaVs.siguienteRonda();
-        }
+			Partida p1 = partidaVs.getPartidaJ1();
+			Partida p2 = partidaVs.getPartidaJ2();
 
-        actualizarTurno();
-    }
+			pintarResultado(gridCasillas, p1.getFilaEvaluada(), p1.getUltimoResultado());
+			pintarResultado(gridCasillas1, p2.getFilaEvaluada(), p2.getUltimoResultado());
 
-    private void pintarResultado(GridPane grid, int fila, String[] resultado) {
+			partidaVs.siguienteRonda();
+		}
 
-        for (int i = 0; i < 5; i++) {
+		actualizarTurno();
+	}
 
-            Button b = getNode(grid, fila, i);
-            if (b == null) continue;
+	private void pintarResultado(GridPane grid, int fila, String[] resultado) {
 
-            switch (resultado[i]) {
-                case "VERDE":
-                    b.setStyle("-fx-background-color: #90EE90;");
-                    break;
-                case "AMARILLO":
-                    b.setStyle("-fx-background-color: #FFD966;");
-                    break;
-                default:
-                    b.setStyle("-fx-background-color: gray;");
-            }
-        }
-    }
+		for (int i = 0; i < 5; i++) {
 
-    @FXML
-    private void seleccionarCasilla(MouseEvent event) {
+			Button b = getNode(grid, fila, i);
+			if (b == null)
+				continue;
 
-        if (partidaVs == null) return;
+			switch (resultado[i]) {
+			case "VERDE":
+				b.setStyle("-fx-background-color: #90EE90;");
+				break;
+			case "AMARILLO":
+				b.setStyle("-fx-background-color: #FFD966;");
+				break;
+			default:
+				b.setStyle("-fx-background-color: gray;");
+			}
+		}
+	}
 
-        Button btn = (Button) event.getSource();
-        Integer col = GridPane.getColumnIndex(btn);
+	@FXML
+	private void seleccionarCasilla(MouseEvent event) {
 
-        if (col != null && esTurnoActivo()) {
-            partidaVs.getPartidaActual().moverCursorManual(col);
-        }
-    }
+		if (partidaVs == null)
+			return;
 
-    private boolean esTurnoActivo() {
+		Button btn = (Button) event.getSource();
+		Integer col = GridPane.getColumnIndex(btn);
 
-        return partidaVs.getTurnoActual() == partidaVs.getJugador1()
-                ? !gridCasillas.isDisabled()
-                : !gridCasillas1.isDisabled();
-    }
+		if (col != null && esTurnoActivo()) {
+			partidaVs.getPartidaActual().moverCursorManual(col);
+		}
+	}
 
-    private void actualizarTurno() {
+	private boolean esTurnoActivo() {
 
-        boolean j1 = partidaVs.getTurnoActual() == partidaVs.getJugador1();
+		return partidaVs.getTurnoActual() == partidaVs.getJugador1() ? !gridCasillas.isDisabled()
+				: !gridCasillas1.isDisabled();
+	}
 
-        gridCasillas.setDisable(!j1);
-        gridCasillas1.setDisable(j1);
-    }
+	private void actualizarTurno() {
 
-    private Button getNodeActivo(int fila, int col) {
+		boolean j1 = partidaVs.getTurnoActual() == partidaVs.getJugador1();
 
-        GridPane grid = partidaVs.getTurnoActual() == partidaVs.getJugador1()
-                ? gridCasillas
-                : gridCasillas1;
+		gridCasillas.setDisable(!j1);
+		gridCasillas1.setDisable(j1);
+	}
 
-        return getNode(grid, fila, col);
-    }
+	private Button getNodeActivo(int fila, int col) {
 
-    private Button getNode(GridPane grid, int fila, int col) {
+		GridPane grid = partidaVs.getTurnoActual() == partidaVs.getJugador1() ? gridCasillas : gridCasillas1;
 
-        for (Node n : grid.getChildren()) {
+		return getNode(grid, fila, col);
+	}
 
-            Integer f = GridPane.getRowIndex(n);
-            Integer c = GridPane.getColumnIndex(n);
+	private Button getNode(GridPane grid, int fila, int col) {
 
-            if ((f == null ? 0 : f) == fila && (c == null ? 0 : c) == col) {
-                return (Button) n;
-            }
-        }
-        return null;
-    }
+		for (Node n : grid.getChildren()) {
 
-    @FXML
-    private void irMenuJugador(ActionEvent event) {
+			Integer f = GridPane.getRowIndex(n);
+			Integer c = GridPane.getColumnIndex(n);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml")
-            );
+			if ((f == null ? 0 : f) == fila && (c == null ? 0 : c) == col) {
+				return (Button) n;
+			}
+		}
+		return null;
+	}
 
-            Parent root = loader.load();
+	@FXML
+	public void irMenuJugador(ActionEvent event) {
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+		try {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml"));
+
+			Parent root = loader.load();
+
+			// Obtener controlador del menú
+			MenuJuegoControlador controller = loader.getController();
+
+			// Enviar nuevamente el jugador logueado
+			controller.setJugador(jugador1);
+
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(new Scene(root));
+			stage.show();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

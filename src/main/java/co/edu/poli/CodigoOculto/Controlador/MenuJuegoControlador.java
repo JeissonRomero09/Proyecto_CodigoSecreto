@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -26,6 +27,7 @@ public class MenuJuegoControlador {
         this.jugador = jugador;
         actualizarTexto();
     }
+    
 
     // Inicializa la vista
     @FXML
@@ -65,6 +67,21 @@ public class MenuJuegoControlador {
             (_1vs1_LocalControlador controller) -> controller.setJugador(jugador)
         );
     }
+    
+    @FXML
+
+    // solo si el jugador es invitado
+       public void irAHistorial(ActionEvent event) {
+
+           Alert alerta = new Alert(Alert.AlertType.WARNING);
+           alerta.setTitle("Advertencia");
+           alerta.setHeaderText(null);
+           alerta.setContentText(
+               "No puedes ver el historial como invitado.\nDebes iniciar sesión para acceder."
+           );
+
+           alerta.showAndWait();
+       }
 
     // Cerrar sesión
     @FXML
