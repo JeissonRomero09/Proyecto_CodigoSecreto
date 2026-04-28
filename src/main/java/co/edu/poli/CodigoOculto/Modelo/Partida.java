@@ -15,6 +15,7 @@ public class Partida {
 	private NumeroSecreto numeroSecreto;
 
 	private int filaEvaluada;
+	
 
 	public Partida() {
 		iniciarPartida();

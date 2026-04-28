@@ -10,31 +10,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="491.0" prefWidth="914.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.CodigoOculto.Controlador.MenuPrincipalControlador">
+<AnchorPane prefHeight="491.0" prefWidth="914.0"
+	xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="co.edu.poli.CodigoOculto.Controlador.MenuPrincipalControlador">
 
 	<children>
 
 
-		<ImageView fitHeight="531.0" fitWidth="939.0" layoutX="-9.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="529.0" fitWidth="939.0" layoutX="-9.0"
+			layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
 			<image>
-				<Image url="@/co/edu/poli/CodigoOculto/Img/F_M.jpeg" />
+				<Image url="@/co/edu/poli/CodigoOculto/Img/Fondo1.png" />
 			</image>
 		</ImageView>
-		<ImageView fitHeight="304.0" fitWidth="360.0" layoutX="282.0" layoutY="16.0" opacity="0.88">
+		<ImageView fitHeight="304.0" fitWidth="360.0"
+			layoutX="282.0" layoutY="16.0" opacity="0.88">
 			<image>
-				<Image url="@/co/edu/poli/CodigoOculto/Img/Cuadro.png" />
+				<Image url="@/co/edu/poli/CodigoOculto/Img/Cuadro1.png" />
 			</image>
 		</ImageView>
 
 		<!-- BOTÓN REGISTRARSE -->
-		<Button layoutX="388.0" layoutY="63.0" onAction="#registrarJugador" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;" text="Registrarse" textFill="WHITE">
+		<Button layoutX="388.0" layoutY="63.0"
+			onAction="#registrarJugador" prefHeight="32.0" prefWidth="157.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			text="Registrarse" textFill="WHITE">
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>
 		</Button>
 
 		<!-- INPUT NOMBRE -->
-		<Rectangle arcHeight="40.0" arcWidth="40.0" height="32.0" layoutX="324.0" layoutY="102.0" stroke="BLACK" strokeType="INSIDE" width="139.0" />
+		<Rectangle arcHeight="40.0" arcWidth="40.0" height="32.0"
+			layoutX="324.0" layoutY="102.0" stroke="BLACK" strokeType="INSIDE"
+			width="139.0" />
 
 		<Text fill="WHITE" layoutX="345.0" layoutY="122.0" text="Name :">
 			<font>
@@ -42,21 +51,28 @@
 			</font>
 		</Text>
 
-		<TextField fx:id="txtNombre" layoutX="399.0" layoutY="102.0" prefHeight="32.0" prefWidth="199.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f);                         -fx-background-radius: 40;                         -fx-text-fill: white;                         -fx-padding: 8 15 8 15;">
+		<TextField fx:id="txtNombre" layoutX="399.0" layoutY="102.0"
+			prefHeight="32.0" prefWidth="199.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f);                         -fx-background-radius: 40;                         -fx-text-fill: white;                         -fx-padding: 8 15 8 15;">
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>
 		</TextField>
 
 		<!-- BOTÓN LOGIN -->
-		<Button layoutX="387.0" layoutY="152.0" onAction="#iniciarSesion" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;" text="Iniciar Sesión" textFill="WHITE">
+		<Button layoutX="387.0" layoutY="152.0"
+			onAction="#iniciarSesion" prefHeight="32.0" prefWidth="157.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			text="Iniciar Sesión" textFill="WHITE">
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>
 		</Button>
 
 		<!-- INPUT ID -->
-		<Rectangle arcHeight="40.0" arcWidth="40.0" height="31.0" layoutX="355.0" layoutY="192.0" stroke="BLACK" strokeType="INSIDE" width="139.0" />
+		<Rectangle arcHeight="40.0" arcWidth="40.0" height="31.0"
+			layoutX="355.0" layoutY="192.0" stroke="BLACK" strokeType="INSIDE"
+			width="139.0" />
 
 		<Text fill="WHITE" layoutX="368.0" layoutY="211.0" text="ID :">
 			<font>
@@ -64,21 +80,27 @@
 			</font>
 		</Text>
 
-		<TextField fx:id="txtId" layoutX="388.0" layoutY="191.0" prefHeight="32.0" prefWidth="185.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f);                             -fx-background-radius: 40;                                                -fx-text-fill: white;                                                      -fx-padding: 8 15 8 15;">
+		<TextField fx:id="txtId" layoutX="388.0" layoutY="191.0"
+			prefHeight="32.0" prefWidth="185.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f);                             -fx-background-radius: 40;                                                -fx-text-fill: white;                                                      -fx-padding: 8 15 8 15;">
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>
 		</TextField>
 
 		<!-- TEXTO DE ERROR (IMPORTANTE PARA AUTENTICACIÓN) -->
-		<Text fx:id="textoError" fill="RED" layoutX="360.0" layoutY="231.0" text="">
+		<Text fx:id="textoError" fill="RED" layoutX="360.0"
+			layoutY="231.0" text="">
 			<font>
 				<Font name="MT Extra" size="12.0" />
 			</font>
 		</Text>
 
 		<!-- BOTÓN INVITADO -->
-		<Button layoutX="388.0" layoutY="248.0" onAction="#irAMenuJuego" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;" text="Jugar Como Invitado" textFill="WHITE">
+		<Button layoutX="388.0" layoutY="248.0"
+			onAction="#irAMenuJuego" prefHeight="32.0" prefWidth="157.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			text="Jugar Como Invitado" textFill="WHITE">
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>
@@ -86,6 +108,12 @@
 				<Cursor fx:constant="HAND" />
 			</cursor>
 		</Button>
+		<ImageView fitHeight="156.0" fitWidth="269.0"
+			layoutX="332.0" layoutY="301.0">
+			<image>
+				<Image url="@/co/edu/poli/CodigoOculto/Img/Titulo.png" />
+			</image>
+		</ImageView>
 
 	</children>
 </AnchorPane>

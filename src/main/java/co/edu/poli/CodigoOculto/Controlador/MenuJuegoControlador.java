@@ -36,70 +36,34 @@ public class MenuJuegoControlador {
     // Ir a Como Jugar
     @FXML
     public void irAComoJugar(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/ComoJugar.fxml")
-            );
-
-            Parent root = loader.load();
-
-            ComoJugarControlador controller = loader.getController();
-            controller.setJugador(jugador);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        cambiarEscena(
+            event,
+            "/co/edu/poli/CodigoOculto/Vista/ComoJugar.fxml",
+            (ComoJugarControlador controller) -> controller.setJugador(jugador)
+        );
     }
 
-    // Ir a juego individual
+    //Jugar solo (Partida)
     @FXML
     public void irAPantallaJuego(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/PantallaJuego.fxml")
-            );
-
-            Parent root = loader.load();
-
-            PantallaJuegoControlador controller = loader.getController();
-            controller.setJugador(jugador);
-            controller.setPartida(new Partida());
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        cambiarEscena(
+            event,
+            "/co/edu/poli/CodigoOculto/Vista/PantallaJuego.fxml",
+            (PantallaJuegoControlador controller) -> {
+                controller.setJugador(jugador);
+                controller.setPartida(new Partida()); 
+            }
+        );
     }
 
-    // Ir a modo 1vs1 local
+    // 1vs1 local
     @FXML
     public void irA1vs1Local(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/co/edu/poli/CodigoOculto/Vista/_1vs1_Local.fxml")
-            );
-
-            Parent root = loader.load();
-
-            _1vs1_LocalControlador controller = loader.getController();
-
-            // solo jugador 1 por ahora
-            controller.setJugador(jugador);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        cambiarEscena(
+            event,
+            "/co/edu/poli/CodigoOculto/Vista/_1vs1_Local.fxml",
+            (_1vs1_LocalControlador controller) -> controller.setJugador(jugador)
+        );
     }
 
     // Cerrar sesión
@@ -119,7 +83,33 @@ public class MenuJuegoControlador {
         }
     }
 
-    // Actualiza textos en pantalla
+   
+    private <T> void cambiarEscena(ActionEvent event, String rutaFXML, ControllerSetter<T> setter) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFXML));
+            Parent root = loader.load();
+
+            T controller = loader.getController();
+
+            if (setter != null) {
+                setter.set(controller);
+            }
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // interfaz funcional
+    private interface ControllerSetter<T> {
+        void set(T controller);
+    }
+
+    // Actualiza textos
     private void actualizarTexto() {
         if (jugador != null) {
             if (textoNombre != null) {

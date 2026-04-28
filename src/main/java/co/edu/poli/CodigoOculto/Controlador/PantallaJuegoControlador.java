@@ -41,7 +41,8 @@ public class PantallaJuegoControlador {
     private Temporizador temporizador;
     private Timeline timeline;
     private Jugador jugador;
-
+    
+    
     @FXML
     private Text txtId;
 

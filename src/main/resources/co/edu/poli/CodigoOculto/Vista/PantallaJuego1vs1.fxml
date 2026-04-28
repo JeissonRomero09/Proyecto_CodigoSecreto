@@ -30,6 +30,12 @@
 				<Image url="@/co/edu/poli/CodigoOculto/Img/BlancoFJ1.jpg" />
 			</image>
 		</ImageView>
+		<ImageView fitHeight="90.0" fitWidth="151.0" layoutX="372.0"
+			layoutY="200.0">
+			<image>
+				<Image url="@../Img/Titulo.png" />
+			</image>
+		</ImageView>
 
 		<Text fx:id="txtId" layoutX="224.0" layoutY="95.0"
 			text="Name J1:" wrappingWidth="416.6666946411133">
@@ -317,7 +323,7 @@
 				</HBox>
 			</children>
 		</VBox>
-		<Text fx:id="txtId11" fill="RED" layoutX="432.0" layoutY="112.0"
+		<Text fx:id="txtId11" fill="RED" layoutX="380.0" layoutY="47.0"
 			text="30" wrappingWidth="28.66668701171875">
 			<font>
 				<Font name="MT Extra" size="26.0" />
