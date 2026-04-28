@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class _1vs1_LocalControlador {
@@ -18,37 +19,45 @@ public class _1vs1_LocalControlador {
     @FXML
     private TextField txtId;
 
-    // Recibe jugador 1 desde menú
+    @FXML
+    private Text textoNombre; // Debe coincidir con fx:id del FXML
+
     public void setJugador(Jugador jugador) {
         this.jugador1 = jugador;
+        actualizarTexto(); // Se llama también aquí por el orden de carga de JavaFX
     }
 
-    // Iniciar partida 1vs1
+    @FXML
+    public void initialize() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        if (textoNombre != null && jugador1 != null) {
+            textoNombre.setText("Name J1: " + jugador1.getNombre());
+        }
+    }
+
     @FXML
     public void iniciarPartida(ActionEvent event) {
         try {
 
-            // validar entrada
             String idTexto = txtId.getText();
             if (idTexto == null || idTexto.isBlank() || jugador1 == null) return;
 
             int idInt;
-
-            // convertir id a int
             try {
                 idInt = Integer.parseInt(idTexto);
             } catch (NumberFormatException e) {
-                return; // id inválido
+                return;
             }
 
-            // crear jugador 2 usando constructor válido
             jugador2 = new Jugador();
             jugador2.setId(idInt);
             jugador2.setNombre("Jugador 2");
             jugador2.setPuntaje(0);
             jugador2.setEsInvitado(false);
 
-            // cargar vista de juego
             FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/co/edu/poli/CodigoOculto/Vista/PantallaJuego1vs1.fxml")
             );
@@ -67,13 +76,18 @@ public class _1vs1_LocalControlador {
         }
     }
 
-    // volver al menú
     @FXML
     public void volverMenu(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(
+
+            FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuJuego.fxml")
             );
+
+            Parent root = loader.load();
+
+            MenuJuegoControlador controller = loader.getController();
+            controller.setJugador(jugador1); // Para no perder datos
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -83,5 +97,4 @@ public class _1vs1_LocalControlador {
             e.printStackTrace();
         }
     }
-
 }
