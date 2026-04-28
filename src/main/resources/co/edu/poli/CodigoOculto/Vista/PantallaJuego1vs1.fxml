@@ -12,10 +12,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="913.0" style="-fx-background-image: url('/co/edu/poli/CodigoOculto/Img/BlancoF.jpg');            -fx-background-size: cover;            -fx-background-position: center;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.CodigoOculto.Controlador.PantallaJuego1vs1Controlador">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0"
+	prefWidth="913.0"
+	style="-fx-background-image: url('/co/edu/poli/CodigoOculto/Img/BlancoF.jpg');            -fx-background-size: cover;            -fx-background-position: center;"
+	xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="co.edu.poli.CodigoOculto.Controlador.PantallaJuego1vs1Controlador">
 
 	<children>
-		<ImageView fitHeight="647.0" fitWidth="471.0" layoutX="447.0">
+		<ImageView fitHeight="647.0" fitWidth="471.0"
+			layoutX="447.0">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/NegroJ2.jpg" />
 			</image>
@@ -25,66 +31,121 @@
 				<Image url="@/co/edu/poli/CodigoOculto/Img/BlancoFJ1.jpg" />
 			</image>
 		</ImageView>
-		<ImageView fitHeight="105.0" fitWidth="170.0" layoutX="362.0" layoutY="193.0">
+		<ImageView fitHeight="105.0" fitWidth="170.0"
+			layoutX="362.0" layoutY="193.0">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Titulo.png" />
 			</image>
 		</ImageView>
-		<ImageView fitHeight="328.0" fitWidth="308.0" layoutX="64.0" layoutY="77.0">
+		<ImageView fitHeight="328.0" fitWidth="308.0" layoutX="64.0"
+			layoutY="77.0">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Cuadro1.png" />
 			</image>
 		</ImageView>
-		<ImageView fitHeight="328.0" fitWidth="308.0" layoutX="529.0" layoutY="77.0">
+		<ImageView fitHeight="328.0" fitWidth="308.0"
+			layoutX="529.0" layoutY="77.0">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Cuadro1.png" />
 			</image>
 		</ImageView>
 
-		<Text fx:id="txtId" layoutX="104.0" layoutY="78.0" text="Name J1:" wrappingWidth="416.6666946411133">
+		<Text fx:id="txtId" layoutX="104.0" layoutY="78.0"
+			text="Name J1:" wrappingWidth="416.6666946411133">
 			<font>
 				<Font name="Consolas" size="16.0" />
 			</font>
 		</Text>
 
-		<GridPane fx:id="gridCasillas" hgap="10.0" layoutX="102.0" layoutY="125.0" vgap="10.0">
+		<GridPane fx:id="gridCasillas" hgap="10.0" layoutX="102.0"
+			layoutY="125.0" vgap="10.0">
 
 			<children>
 
 				<!-- FILA 0 -->
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="0" />
 
 				<!-- FILA 1 -->
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="1" />
 
 				<!-- FILA 2 -->
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="2" />
 
 				<!-- FILA 3 -->
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="3" />
 
 				<!-- FILA 4 -->
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="4" />
 
 			</children>
 			<columnConstraints>
@@ -102,34 +163,17 @@
 				<RowConstraints />
 			</rowConstraints>
 		</GridPane>
-
-		<!-- TECLADO (NO SE TOCA) -->
-		<VBox layoutX="147.0" layoutY="411.0" opacity="0.8" spacing="5.0" style="-fx-background-color: black; -fx-padding: 8; -fx-background-radius: 3;">
-
-			<children>
-				<HBox alignment="CENTER" spacing="5.0">
-					<Button onAction="#presionarBoton" text="1" />
-					<Button onAction="#presionarBoton" text="2" />
-					<Button onAction="#presionarBoton" text="3" />
-					<Button onAction="#presionarBoton" text="4" />
-					<Button onAction="#presionarBoton" text="5" />
-				</HBox>
-
-				<HBox alignment="CENTER" spacing="5.0">
-					<Button onAction="#presionarBoton" text="6" />
-					<Button onAction="#presionarBoton" text="7" />
-					<Button onAction="#presionarBoton" text="8" />
-					<Button onAction="#presionarBoton" text="9" />
-				</HBox>
-			</children>
-		</VBox>
-		<Button layoutX="464.0" layoutY="26.0" onAction="#irMenuJugador" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;" text="Volver" textFill="WHITE">
+		<Button layoutX="464.0" layoutY="26.0"
+			onAction="#irMenuJugador" prefHeight="25.0" prefWidth="67.0"
+			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			text="Volver" textFill="WHITE">
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>
 		</Button>
 
-		<VBox layoutX="773.0" layoutY="411.0" opacity="0.9" spacing="5.0" style="-fx-background-color: black; -fx-padding: 8; -fx-background-radius: 3;">
+		<VBox layoutX="417.0" layoutY="465.0" opacity="0.9" spacing="5.0"
+			style="-fx-background-color: black; -fx-padding: 8; -fx-background-radius: 3;">
 
 			<children>
 				<HBox alignment="CENTER">
@@ -137,38 +181,90 @@
 				</HBox>
 			</children>
 		</VBox>
-		<ImageView fitHeight="72.0" fitWidth="75.0" layoutX="357.0" layoutY="3.0" opacity="0.9">
+		<ImageView fitHeight="72.0" fitWidth="75.0" layoutX="357.0"
+			layoutY="3.0" opacity="0.9">
 			<image>
 				<Image url="@../Img/Cronometro.png" />
 			</image>
 		</ImageView>
-		<GridPane fx:id="gridCasillas1" hgap="10.0" layoutX="563.0" layoutY="125.0" vgap="10.0">
+		<GridPane fx:id="gridCasillas1" hgap="10.0" layoutX="563.0"
+			layoutY="125.0" vgap="10.0">
 			<children>
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="0" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40" prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="0" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="1" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="2" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="3" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="0" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="1" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="2" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="3" GridPane.rowIndex="4" />
+				<Button onMouseClicked="#seleccionarCasilla" prefHeight="40"
+					prefWidth="40" style="-fx-font-weight: bold; -fx-font-size: 18px;"
+					GridPane.columnIndex="4" GridPane.rowIndex="4" />
 			</children>
 			<columnConstraints>
 				<ColumnConstraints />
@@ -185,7 +281,9 @@
 				<RowConstraints />
 			</rowConstraints>
 		</GridPane>
-		<VBox layoutX="608.0" layoutY="411.0" opacity="0.89" spacing="5.0" style="-fx-background-color: black; -fx-padding: 8; -fx-background-radius: 3;">
+		<VBox layoutX="371.0" layoutY="385.0" opacity="0.89"
+			spacing="5.0"
+			style="-fx-background-color: black; -fx-padding: 8; -fx-background-radius: 3;">
 			<children>
 				<HBox alignment="CENTER" spacing="5.0">
 					<children>
@@ -206,25 +304,18 @@
 				</HBox>
 			</children>
 		</VBox>
-		<VBox layoutX="312.0" layoutY="411.0" opacity="0.8" spacing="5.0" style="-fx-background-color: black; -fx-padding: 8; -fx-background-radius: 3;">
-			<children>
-				<HBox alignment="CENTER">
-					<children>
-						<Button onAction="#presionarBoton" text="Enter" />
-					</children>
-				</HBox>
-			</children>
-		</VBox>
-		<Text fx:id="txtId1" fill="WHITE" layoutX="565.0" layoutY="78.0" text="Name J2:" wrappingWidth="416.6666946411133">
+		<Text fx:id="txtId1" fill="WHITE" layoutX="565.0" layoutY="78.0"
+			text="Name J2:" wrappingWidth="416.6666946411133">
 			<font>
 				<Font name="Consolas" size="16.0" />
 			</font>
 		</Text>
-      <Text fx:id="txtId12" fill="RED" layoutX="384.0" layoutY="48.0" text="30" wrappingWidth="22.666666666666515">
-         <font>
-            <Font name="MT Extra" size="20.0" />
-         </font>
-      </Text>
+		<Text fx:id="txtId12" fill="RED" layoutX="384.0" layoutY="48.0"
+			text="30" wrappingWidth="22.666666666666515">
+			<font>
+				<Font name="MT Extra" size="20.0" />
+			</font>
+		</Text>
 
 	</children>
 </AnchorPane>

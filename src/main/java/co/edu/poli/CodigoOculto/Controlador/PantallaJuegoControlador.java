@@ -239,7 +239,7 @@ public class PantallaJuegoControlador {
         }
     }
 
-    // boton teclado
+ // boton teclado
     @FXML
     private void presionarBoton(ActionEvent event) {
 
@@ -249,7 +249,13 @@ public class PantallaJuegoControlador {
         Button btn = (Button) event.getSource();
         String texto = btn.getText();
 
+        // manejar ENTER
         if (texto.equalsIgnoreCase("Enter")) {
+
+            // validar fila completa
+            if (!partida.esFilaCompleta()) {
+                return;
+            }
 
             String estado = partida.procesarIntento();
 
@@ -263,7 +269,7 @@ public class PantallaJuegoControlador {
 
                 case "PERDISTE":
                     mostrarAlertaYReiniciar(
-                            "PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
+                        "PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
                     break;
 
                 case "CONTINUA":
@@ -273,6 +279,7 @@ public class PantallaJuegoControlador {
             return;
         }
 
+        // ingresar número
         int fila = partida.getFilaActual();
         int col = partida.getColumnaActual();
 
