@@ -174,12 +174,18 @@ public class PantallaJuego1vs1Controlador {
 		Button btn = (Button) event.getSource();
 		String t = btn.getText();
 
+		Partida p = partidaVs.getPartidaActual();
+
 		if (t.equalsIgnoreCase("Enter")) {
+
+			if (!p.esFilaCompleta()) {
+				mostrarAlertaTemporal("Completa toda la fila antes de continuar");
+				return;
+			}
+
 			manejarEnter();
 			return;
 		}
-
-		Partida p = partidaVs.getPartidaActual();
 
 		int f = p.getFilaActual();
 		int c = p.getColumnaActual();
@@ -189,6 +195,26 @@ public class PantallaJuego1vs1Controlador {
 			if (b != null)
 				b.setText(t);
 		}
+	}
+
+	private void mostrarAlertaTemporal(String mensaje) {
+
+		Stage popup = new Stage();
+		popup.initStyle(StageStyle.UNDECORATED);
+
+		Label texto = new Label(mensaje);
+		texto.setStyle("-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;");
+
+		StackPane root = new StackPane(texto);
+		root.setAlignment(Pos.CENTER);
+		root.setStyle("-fx-background-color: rgba(0,0,0,0.85); -fx-padding: 25;");
+
+		popup.setScene(new Scene(root));
+		popup.show();
+
+		PauseTransition pausa = new PauseTransition(Duration.seconds(2));
+		pausa.setOnFinished(e -> popup.close());
+		pausa.play();
 	}
 
 	/**

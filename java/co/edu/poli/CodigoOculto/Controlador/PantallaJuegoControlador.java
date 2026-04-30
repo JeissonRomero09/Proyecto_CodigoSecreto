@@ -46,7 +46,7 @@ public class PantallaJuegoControlador {
 	private Timeline timeline;
 	private Jugador jugador;
 
-	// 🔥 BD (AGREGADO)
+	
 	private PartidaDAO partidaDAO;
 	private Partida_JugadorDAO partidaJugadorDAO;
 
@@ -197,12 +197,12 @@ public class PantallaJuegoControlador {
 				switch (estado) {
 
 				case "GANASTE":
-					guardarHistorial("VICTORIA"); // 🔥 BD
+					guardarHistorial("VICTORIA"); 
 					mostrarAlertaYReiniciar("GANASTE");
 					break;
 
 				case "PERDISTE":
-					guardarHistorial("DERROTA"); // 🔥 BD
+					guardarHistorial("DERROTA"); 
 					mostrarAlertaYReiniciar("PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
 					break;
 
@@ -241,7 +241,7 @@ public class PantallaJuegoControlador {
 
 				if (estado.equals("PERDISTE")) {
 
-					guardarHistorial("DERROTA"); // 🔥 BD
+					guardarHistorial("DERROTA"); 
 					mostrarAlertaYReiniciar("PERDISTE");
 
 				} else {
@@ -298,50 +298,56 @@ public class PantallaJuegoControlador {
 	@FXML
 	private void presionarBoton(ActionEvent event) {
 
-		if (partida == null)
-			return;
+	    if (partida == null)
+	        return;
 
-		Button btn = (Button) event.getSource();
-		String texto = btn.getText();
+	    Button btn = (Button) event.getSource();
+	    String texto = btn.getText();
 
-		if (texto.equalsIgnoreCase("Enter")) {
+	    if (texto.equalsIgnoreCase("Enter")) {
 
-			if (!partida.esFilaCompleta())
-				return;
+	        if (!partida.esFilaCompleta()) {
+	        	mostrarAlertaTemporal("Completa toda la fila antes de continuar");
+	            return;
+	        }
 
-			String estado = partida.procesarIntento();
+	        String estado = partida.procesarIntento();
 
-			pintarResultado(partida.getUltimoResultado());
+	        switch (estado) {
 
-			switch (estado) {
+	        case "GANASTE":
+	            pintarResultado(partida.getUltimoResultado());
+	            guardarHistorial("VICTORIA"); 
+	            mostrarAlertaYReiniciar("GANASTE");
+	            break;
 
-			case "GANASTE":
-				guardarHistorial("VICTORIA"); // 🔥 BD
-				mostrarAlertaYReiniciar("GANASTE");
-				break;
+	        case "PERDISTE":
+	            pintarResultado(partida.getUltimoResultado());
+	            guardarHistorial("DERROTA"); 
+	            mostrarAlertaYReiniciar("PERDISTE\nCombinacion: " 
+	                + Arrays.toString(partida.getCombinacion()));
+	            break;
 
-			case "PERDISTE":
-				guardarHistorial("DERROTA"); // 🔥 BD
-				mostrarAlertaYReiniciar("PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
-				break;
+	        case "CONTINUA":
+	            pintarResultado(partida.getUltimoResultado());
+	            iniciarTemporizador();
+	            break;
+	        }
+	        return;
+	    }
+	    
+	    
 
-			case "CONTINUA":
-				iniciarTemporizador();
-				break;
-			}
-			return;
-		}
+	    int fila = partida.getFilaActual();
+	    int col = partida.getColumnaActual();
 
-		int fila = partida.getFilaActual();
-		int col = partida.getColumnaActual();
+	    if (partida.realizarIntento(texto)) {
 
-		if (partida.realizarIntento(texto)) {
-
-			Button casilla = getNode(fila, col);
-			if (casilla != null) {
-				casilla.setText(texto);
-			}
-		}
+	        Button casilla = getNode(fila, col);
+	        if (casilla != null) {
+	            casilla.setText(texto);
+	        }
+	    }
 	}
 
 	@FXML
@@ -376,6 +382,28 @@ public class PantallaJuegoControlador {
 			}
 		}
 		return null;
+	}
+	
+	private void mostrarAlertaTemporal(String mensaje) {
+
+	    Stage popup = new Stage();
+	    popup.initStyle(StageStyle.UNDECORATED);
+
+	    Label texto = new Label(mensaje);
+	    texto.setStyle("-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;");
+
+	    StackPane root = new StackPane(texto);
+	    root.setAlignment(Pos.CENTER);
+	    root.setStyle("-fx-background-color: rgba(0,0,0,0.85); -fx-padding: 25;");
+
+	    popup.setScene(new Scene(root));
+	    popup.show();
+
+	    PauseTransition pausa = new PauseTransition(Duration.seconds(2));
+
+	    pausa.setOnFinished(e -> popup.close());
+
+	    pausa.play();
 	}
 
 	private void mostrarAlertaYReiniciar(String mensaje) {
