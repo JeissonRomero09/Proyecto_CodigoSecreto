@@ -7,11 +7,15 @@ public class Jugador {
 	private int puntaje;
 	private boolean esInvitado;
 
-	// Constructor vacío
+	/**
+	 * Constructor vacío.
+	 */
 	public Jugador() {
 	}
 
-	// BD
+	/**
+	 * Constructor usado para datos desde base de datos.
+	 */
 	public Jugador(int id, String nombre, int puntaje, boolean esInvitado) {
 		this.id = id;
 		this.nombre = nombre;
@@ -19,14 +23,25 @@ public class Jugador {
 		this.esInvitado = esInvitado;
 	}
 
-	// Crear jugador nuevo
+	/**
+	 * Indica si el jugador es invitado.
+	 */
+	public boolean esInvitado() {
+		return this.id == 0;
+	}
+
+	/**
+	 * Constructor para crear un jugador nuevo.
+	 */
 	public Jugador(String nombre) {
 		this.nombre = nombre;
 		this.puntaje = 0;
 		this.esInvitado = false;
 	}
 
-	// Invitado
+	/**
+	 * Crea un jugador invitado.
+	 */
 	public static Jugador crearInvitado() {
 		Jugador j = new Jugador();
 		j.nombre = "INVITADO";
@@ -37,6 +52,7 @@ public class Jugador {
 	}
 
 	// Getters y setters
+
 	public int getId() {
 		return id;
 	}

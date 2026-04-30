@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Vista de la pantalla "Cómo jugar" -->
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,18 +11,22 @@
 	xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="co.edu.poli.CodigoOculto.Controlador.ComoJugarControlador">
 
+	<!-- Imagen instrucción parte 1 -->
 	<ImageView fitHeight="447.0" fitWidth="461.0" layoutX="7.0"
 		layoutY="4.0">
 		<image>
 			<Image url="@/co/edu/poli/CodigoOculto/Img/ComoJugar1.png" />
 		</image>
 	</ImageView>
+
+	<!-- Decoración -->
 	<ImageView fitHeight="56.0" fitWidth="129.0" layoutY="-4.0">
 		<image>
 			<Image url="@/co/edu/poli/CodigoOculto/Img/Rectangulo1.png" />
 		</image>
 	</ImageView>
 
+	<!-- Imagen instrucción parte 2 -->
 	<ImageView fitHeight="445.0" fitWidth="468.0" layoutX="468.0"
 		layoutY="3.0">
 		<image>
@@ -29,6 +34,7 @@
 		</image>
 	</ImageView>
 
+	<!-- Botón volver al menú -->
 	<Button layoutX="25.0" layoutY="13.0" onAction="#irMenuJugador"
 		prefHeight="18.0" prefWidth="80.0"
 		style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
@@ -39,6 +45,8 @@
 		</font>
 
 	</Button>
+
+	<!-- Título -->
 	<ImageView fitHeight="50.0" fitWidth="80.0" layoutX="849.0"
 		layoutY="5.0">
 		<image>

@@ -17,6 +17,9 @@ public class ComoJugarControlador {
 		this.jugador = jugador;
 	}
 
+	/**
+	 * Redirige al menú principal del jugador
+	 */
 	@FXML
 	private void irMenuJugador(ActionEvent event) {
 
@@ -28,7 +31,7 @@ public class ComoJugarControlador {
 			Parent root = loader.load();
 
 			MenuJuegoControlador controller = loader.getController();
-			controller.setJugador(jugador); //
+			controller.setJugador(jugador);
 
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(new Scene(root));

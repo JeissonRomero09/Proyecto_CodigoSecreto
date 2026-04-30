@@ -15,12 +15,17 @@ public class Partida {
 	private NumeroSecreto numeroSecreto;
 
 	private int filaEvaluada;
-	
 
+	/**
+	 * Inicializa la partida
+	 */
 	public Partida() {
 		iniciarPartida();
 	}
 
+	/**
+	 * Reinicia la partida
+	 */
 	public void iniciarPartida() {
 		this.tablero = new String[MAX_FILAS][MAX_COLUMNAS];
 		this.filaActual = 0;
@@ -29,7 +34,6 @@ public class Partida {
 		this.numeroSecreto = new NumeroSecreto(MAX_COLUMNAS);
 	}
 
-	// insertar numero
 	public boolean realizarIntento(String numero) {
 
 		if (juegoTerminado || columnaActual >= MAX_COLUMNAS)
@@ -46,7 +50,9 @@ public class Partida {
 		}
 	}
 
-	// procesar intento
+	/**
+	 * Procesa la fila actual del jugador
+	 */
 	public String procesarIntento() {
 
 		if (!esFilaCompleta())
@@ -56,10 +62,7 @@ public class Partida {
 
 		int[] intento = obtenerIntentoActual();
 
-		ultimoResultado = Validacion.validar(
-			intento,
-			numeroSecreto.getCombinacion()
-		);
+		ultimoResultado = Validacion.validar(intento, numeroSecreto.getCombinacion());
 
 		if (esVictoria()) {
 			juegoTerminado = true;
@@ -123,6 +126,9 @@ public class Partida {
 		}
 	}
 
+	/**
+	 * Se ejecuta cuando el tiempo se acaba
+	 */
 	public String tiempoAgotado() {
 
 		completarFilaConCeros();
@@ -136,15 +142,13 @@ public class Partida {
 
 		return "CONTINUA";
 	}
-	
+
 	public void moverCursorManual(int col) {
 
-	    if (!juegoTerminado && col >= 0 && col < MAX_COLUMNAS) {
-	        this.columnaActual = col;
-	    }
+		if (!juegoTerminado && col >= 0 && col < MAX_COLUMNAS) {
+			this.columnaActual = col;
+		}
 	}
-
-	// getters
 
 	public String getValorCelda(int fila, int col) {
 		return tablero[fila][col];

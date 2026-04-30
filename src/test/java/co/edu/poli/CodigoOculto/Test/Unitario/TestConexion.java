@@ -10,49 +10,56 @@ import co.edu.poli.CodigoOculto.Dao.ConexionBD;
 
 public class TestConexion {
 
-	// Verifica que la conexión no sea null
-	@Test
-	public void testConexionNoNula() {
+    // ================================
+    // 1. CONEXIÓN NO NULA
+    // ================================
+    @Test
+    public void testConexionNoNula() {
 
-		Connection cn = ConexionBD.conectar();
+        Connection cn = ConexionBD.conectar();
 
-		assertNotNull(cn, " La conexión a la base de datos es null");
+        assertNotNull(cn, "La conexión es null");
+    }
 
-	}
+    // ================================
+    // 2. CONEXIÓN ABIERTA
+    // ================================
+    @Test
+    public void testConexionAbierta() throws Exception {
 
-	// Verifica que la conexión esté abierta
-	@Test
-	public void testConexionAbierta() throws Exception {
+        Connection cn = ConexionBD.conectar();
 
-		Connection cn = ConexionBD.conectar();
+        assertNotNull(cn);
+        assertFalse(cn.isClosed(), "La conexión está cerrada");
 
-		assertFalse(cn.isClosed(), " La conexión está cerrada");
+        cn.close();
+    }
 
-		cn.close();
-	}
+    // ================================
+    // 3. CERRAR CONEXIÓN
+    // ================================
+    @Test
+    public void testCerrarConexion() throws Exception {
 
-	// Verifica que se puede cerrar la conexión
-	@Test
-	public void testCerrarConexion() throws Exception {
+        Connection cn = ConexionBD.conectar();
 
-		Connection cn = ConexionBD.conectar();
+        cn.close();
 
-		cn.close();
+        assertTrue(cn.isClosed(), "No se cerró correctamente");
+    }
 
-		assertTrue(cn.isClosed(), " La conexión no se cerró correctamente");
-	}
+    // ================================
+    // 4. VALIDACIÓN DE SQL REAL
+    // ================================
+    @Test
+    public void testConexionPermiteQuery() throws Exception {
 
-	// Verifica múltiples conexiones
-	@Test
-	public void testMultiplesConexiones() {
+        Connection cn = ConexionBD.conectar();
 
-		Connection cn1 = ConexionBD.conectar();
-		Connection cn2 = ConexionBD.conectar();
+        assertDoesNotThrow(() -> {
+            cn.prepareStatement("SELECT 1").executeQuery();
+        });
 
-		assertNotNull(cn1);
-		assertNotNull(cn2);
-
-		assertNotSame(cn1, cn2, " Las conexiones no deberían ser la misma instancia");
-	}
-
+        cn.close();
+    }
 }

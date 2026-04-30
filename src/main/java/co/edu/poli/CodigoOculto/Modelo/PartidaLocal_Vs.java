@@ -2,103 +2,203 @@ package co.edu.poli.CodigoOculto.Modelo;
 
 import java.util.Random;
 
+/**
+ * Modelo que gestiona la lógica del modo 1 vs 1 local.
+ * 
+ * Se encarga de: - Validar inicio de partida - Gestionar turnos - Determinar
+ * ganador o empate - Coordinar las partidas individuales de cada jugador
+ */
 public class PartidaLocal_Vs {
 
-    private Jugador jugador1;
-    private Jugador jugador2;
+	private Jugador jugador1;
+	private Jugador jugador2;
 
-    private Partida partidaJ1;
-    private Partida partidaJ2;
+	private Partida partidaJ1;
+	private Partida partidaJ2;
 
-    private Jugador turnoActual;
+	private Jugador turnoActual;
 
-    private boolean j1YaJugo;
-    private boolean j2YaJugo;
+	private boolean j1YaJugo;
+	private boolean j2YaJugo;
 
-    private Jugador ganador;
+	private Jugador ganador;
 
-    // iniciar partida
-    public void iniciar(Jugador j1, Jugador j2) {
+	/**
+	 * Estados posibles al iniciar la partida
+	 */
+	public enum EstadoInicio {
+		OK, JUGADOR_NO_EXISTE, MISMO_JUGADOR
+	}
 
-        this.jugador1 = j1;
-        this.jugador2 = j2;
+	/**
+	 * Valida si la partida puede iniciar
+	 */
+	public EstadoInicio validarInicio(Jugador j1, Jugador j2) {
 
-        this.partidaJ1 = new Partida();
-        this.partidaJ2 = new Partida();
+		if (j2 == null)
+			return EstadoInicio.JUGADOR_NO_EXISTE;
+		if (j1.getId() == j2.getId())
+			return EstadoInicio.MISMO_JUGADOR;
 
-        Random r = new Random();
-        this.turnoActual = (r.nextBoolean()) ? jugador1 : jugador2;
+		return EstadoInicio.OK;
+	}
 
-        this.j1YaJugo = false;
-        this.j2YaJugo = false;
-        this.ganador = null;
-    }
+	/**
+	 * Inicializa la partida: - Asigna jugadores - Crea partidas individuales -
+	 * Define turno aleatorio
+	 */
+	public void iniciar(Jugador j1, Jugador j2) {
 
-    // partida del turno actual
-    public Partida getPartidaActual() {
-        return (turnoActual == jugador1) ? partidaJ1 : partidaJ2;
-    }
+		this.jugador1 = j1;
+		this.jugador2 = j2;
 
-    public Jugador getTurnoActual() {
-        return turnoActual;
-    }
+		this.partidaJ1 = new Partida();
+		this.partidaJ2 = new Partida();
 
-    // ejecutar intento
-    public String jugarTurno() {
+		Random r = new Random();
+		this.turnoActual = (r.nextBoolean()) ? jugador1 : jugador2;
 
-        String resultado = getPartidaActual().procesarIntento();
+		this.j1YaJugo = false;
+		this.j2YaJugo = false;
+		this.ganador = null;
+	}
 
-        if (turnoActual == jugador1) {
-            j1YaJugo = true;
-        } else {
-            j2YaJugo = true;
-        }
+	/**
+	 * Retorna la partida del jugador actual
+	 */
+	public Partida getPartidaActual() {
+		return (turnoActual == jugador1) ? partidaJ1 : partidaJ2;
+	}
 
-        // victoria inmediata
-        if (resultado.equals("GANASTE")) {
-            ganador = turnoActual;
-            return "FIN";
-        }
+	public Jugador getTurnoActual() {
+		return turnoActual;
+	}
 
-        // ambos jugaron
-        if (j1YaJugo && j2YaJugo) {
-            return "RONDA_COMPLETA";
-        }
+	/**
+	 * Ejecuta un turno: - Procesa intento - Evalúa si hay ganador - Controla rondas
+	 * y cambios de turno
+	 */
+	public String jugarTurno() {
 
-        // cambiar turno
-        cambiarTurno();
-        return "SIGUE";
-    }
+		Partida actual = getPartidaActual();
+		String resultado = actual.procesarIntento();
 
-    private void cambiarTurno() {
-        turnoActual = (turnoActual == jugador1) ? jugador2 : jugador1;
-    }
+		if ("GANASTE".equals(resultado)) {
+			ganador = turnoActual;
+			return "FIN";
+		}
 
-    // nueva ronda
-    public void siguienteRonda() {
-        j1YaJugo = false;
-        j2YaJugo = false;
-        cambiarTurno();
-    }
+		marcarJugadorActual();
 
-    // getters necesarios
-    public Partida getPartidaJ1() {
-        return partidaJ1;
-    }
+		if (partidaJ1.isJuegoTerminado() && partidaJ2.isJuegoTerminado()) {
 
-    public Partida getPartidaJ2() {
-        return partidaJ2;
-    }
+			boolean iguales = comparar();
 
-    public Jugador getGanador() {
-        return ganador;
-    }
+			if (iguales) {
+				return "EMPATE";
+			}
 
-    public Jugador getJugador1() {
-        return jugador1;
-    }
+			return "EMPATE";
+		}
 
-    public Jugador getJugador2() {
-        return jugador2;
-    }
+		if (j1YaJugo && j2YaJugo) {
+			return "RONDA_COMPLETA";
+		}
+
+		cambiarTurno();
+		return "SIGUE";
+	}
+
+	/**
+	 * Compara combinaciones de ambos jugadores
+	 */
+	private boolean comparar() {
+
+		int[] c1 = partidaJ1.getCombinacion();
+		int[] c2 = partidaJ2.getCombinacion();
+
+		for (int i = 0; i < c1.length; i++) {
+			if (c1[i] != c2[i])
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Maneja el caso en que el tiempo se agota
+	 */
+	public String tiempoAgotado() {
+
+		Partida p = getPartidaActual();
+		String estado = p.tiempoAgotado();
+
+		marcarJugadorActual();
+
+		if ("GANASTE".equals(estado)) {
+			ganador = turnoActual;
+			return "FIN";
+		}
+
+		if (j1YaJugo && j2YaJugo) {
+			return "RONDA_COMPLETA";
+		}
+
+		cambiarTurno();
+		return "SIGUE";
+	}
+
+	/**
+	 * Marca que el jugador actual ya jugó
+	 */
+	private void marcarJugadorActual() {
+		if (turnoActual == jugador1) {
+			j1YaJugo = true;
+		} else {
+			j2YaJugo = true;
+		}
+	}
+
+	/**
+	 * Cambia el turno entre jugadores
+	 */
+	private void cambiarTurno() {
+		turnoActual = (turnoActual == jugador1) ? jugador2 : jugador1;
+	}
+
+	/**
+	 * Reinicia estado de ronda
+	 */
+	public void siguienteRonda() {
+		j1YaJugo = false;
+		j2YaJugo = false;
+		cambiarTurno();
+	}
+
+	public Partida getPartidaJ1() {
+		return partidaJ1;
+	}
+
+	public Partida getPartidaJ2() {
+		return partidaJ2;
+	}
+
+	public Jugador getGanador() {
+		return ganador;
+	}
+
+	public Jugador getJugador1() {
+		return jugador1;
+	}
+
+	public Jugador getJugador2() {
+		return jugador2;
+	}
+
+	public int[] getCombinacionJ1() {
+		return partidaJ1.getCombinacion();
+	}
+
+	public int[] getCombinacionJ2() {
+		return partidaJ2.getCombinacion();
+	}
 }

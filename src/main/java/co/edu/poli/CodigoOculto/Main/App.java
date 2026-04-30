@@ -8,11 +8,17 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+	/**
+	 * Clase principal de ejecución de la aplicación JavaFX. Inicia la interfaz
+	 * gráfica cargando la pantalla principal.
+	 */
+
 	@Override
 	public void start(Stage stage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuPrincipal.fxml"));
+
 			System.out.println(getClass().getResource("/co/edu/poli/CodigoOculto/Vista/MenuPrincipal.fxml"));
 
 			Parent root = loader.load();
@@ -24,7 +30,7 @@ public class App extends Application {
 			stage.show();
 
 		} catch (Exception e) {
-			System.out.println("❌ Error al cargar el FXML:");
+			System.out.println(" Error al cargar el FXML:");
 			e.printStackTrace();
 		}
 	}
