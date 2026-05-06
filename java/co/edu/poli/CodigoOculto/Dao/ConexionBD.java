@@ -1,11 +1,12 @@
-/**
- * Clase encargada de la conexión a la base de datos.
- */
 package co.edu.poli.CodigoOculto.Dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * clase encargada de administrar
+ * la conexion con la base de datos
+ */
 public class ConexionBD {
 
 	private static final String URL = "jdbc:mysql://localhost:3306/CodigoSecreto";
@@ -13,7 +14,10 @@ public class ConexionBD {
 	private static final String PASSWORD = "";
 
 	/**
-	 * Establece la conexión con la base de datos.
+	 * establece y retorna una conexion
+	 * activa con la base de datos mysql
+	 * utilizada por el sistema
+	 * @return conexion activa a la bd
 	 */
 	public static Connection conectar() {
 
