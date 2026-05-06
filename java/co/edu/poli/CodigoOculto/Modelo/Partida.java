@@ -1,5 +1,10 @@
 package co.edu.poli.CodigoOculto.Modelo;
 
+/**
+ * clase encargada de gestionar
+ * la logica principal de una partida
+ * individual del juego
+ */
 public class Partida {
 
 	private final int MAX_FILAS = 5;
@@ -19,7 +24,11 @@ public class Partida {
 	private Jugador jugador;
 
 	/**
-	 * Inicializa la partida con su jugador y número secreto
+	 * inicializa la partida con
+	 * el jugador y el numero secreto
+	 * utilizado durante el juego
+	 * @param jugador jugador actual
+	 * @param numeroSecreto codigo secreto
 	 */
 	public Partida(Jugador jugador, NumeroSecreto numeroSecreto) {
 
@@ -31,25 +40,41 @@ public class Partida {
 		this.columnaActual = 0;
 		this.juegoTerminado = false;
 	}
-	
+
+	/**
+	 * registra un numero en la
+	 * posicion actual del tablero
+	 * y avanza el cursor
+	 * @param numero numero ingresado
+	 * @return true si el intento fue valido
+	 */
 	public boolean realizarIntento(String numero) {
 
 		if (juegoTerminado || columnaActual >= MAX_COLUMNAS)
 			return false;
 
 		tablero[filaActual][columnaActual] = numero;
+
 		avanzarCursor();
+
 		return true;
 	}
 
+	/**
+	 * mueve el cursor a la
+	 * siguiente columna disponible
+	 */
 	private void avanzarCursor() {
+
 		if (columnaActual < MAX_COLUMNAS - 1) {
 			columnaActual++;
 		}
 	}
 
 	/**
-	 * Procesa la fila actual del jugador
+	 * procesa el intento realizado
+	 * por el jugador en la fila actual
+	 * @return estado actual de la partida
 	 */
 	public String procesarIntento() {
 
@@ -60,7 +85,9 @@ public class Partida {
 
 		int[] intento = obtenerIntentoActual();
 
-		ultimoResultado = Validacion.validar(intento, numeroSecreto.getCombinacion());
+		ultimoResultado = Validacion.validar(
+				intento,
+				numeroSecreto.getCombinacion());
 
 		if (esVictoria()) {
 			juegoTerminado = true;
@@ -75,6 +102,11 @@ public class Partida {
 		return "CONTINUA";
 	}
 
+	/**
+	 * obtiene la fila actual
+	 * convertida en arreglo numerico
+	 * @return intento actual del jugador
+	 */
 	private int[] obtenerIntentoActual() {
 
 		int[] intento = new int[MAX_COLUMNAS];
@@ -86,46 +118,80 @@ public class Partida {
 		return intento;
 	}
 
+	/**
+	 * verifica si el resultado
+	 * actual corresponde a una victoria
+	 * @return true si gano la partida
+	 */
 	private boolean esVictoria() {
+
 		for (String r : ultimoResultado) {
+
 			if (!r.equals("VERDE"))
 				return false;
 		}
+
 		return true;
 	}
 
+	/**
+	 * avanza a la siguiente fila
+	 * disponible del tablero
+	 * @return true si pudo avanzar
+	 */
 	private boolean pasarFila() {
 
 		if (filaActual < MAX_FILAS - 1) {
+
 			filaActual++;
 			columnaActual = 0;
+
 			return true;
 		}
 
 		return false;
 	}
 
+	/**
+	 * verifica si la fila actual
+	 * contiene todos los valores
+	 * necesarios para jugar
+	 * @return true si esta completa
+	 */
 	public boolean esFilaCompleta() {
 
 		for (int i = 0; i < MAX_COLUMNAS; i++) {
-			if (tablero[filaActual][i] == null || tablero[filaActual][i].isEmpty()) {
+
+			if (tablero[filaActual][i] == null
+					|| tablero[filaActual][i].isEmpty()) {
+
 				return false;
 			}
 		}
+
 		return true;
 	}
 
+	/**
+	 * completa con ceros las casillas
+	 * vacias de la fila actual
+	 */
 	public void completarFilaConCeros() {
 
 		for (int i = 0; i < MAX_COLUMNAS; i++) {
-			if (tablero[filaActual][i] == null || tablero[filaActual][i].isEmpty()) {
+
+			if (tablero[filaActual][i] == null
+					|| tablero[filaActual][i].isEmpty()) {
+
 				tablero[filaActual][i] = "0";
 			}
 		}
 	}
 
 	/**
-	 * Se ejecuta cuando el tiempo se acaba
+	 * ejecuta la accion correspondiente
+	 * cuando el tiempo del jugador termina
+	 * @return estado actual de la partida
 	 */
 	public String tiempoAgotado() {
 
@@ -141,37 +207,82 @@ public class Partida {
 		return "CONTINUA";
 	}
 
+	/**
+	 * mueve manualmente el cursor
+	 * a una columna especifica
+	 * @param col columna seleccionada
+	 */
 	public void moverCursorManual(int col) {
 
-		if (!juegoTerminado && col >= 0 && col < MAX_COLUMNAS) {
+		if (!juegoTerminado
+				&& col >= 0
+				&& col < MAX_COLUMNAS) {
+
 			this.columnaActual = col;
 		}
 	}
 
+	/**
+	 * retorna el valor almacenado
+	 * en una casilla del tablero
+	 * @param fila fila de la casilla
+	 * @param col columna de la casilla
+	 * @return valor guardado en la casilla
+	 */
 	public String getValorCelda(int fila, int col) {
 		return tablero[fila][col];
 	}
 
+	/**
+	 * retorna el ultimo resultado
+	 * generado por la validacion
+	 * @return arreglo de resultados
+	 */
 	public String[] getUltimoResultado() {
 		return ultimoResultado;
 	}
 
+	/**
+	 * retorna la fila actual
+	 * utilizada en la partida
+	 * @return fila actual
+	 */
 	public int getFilaActual() {
 		return filaActual;
 	}
 
+	/**
+	 * retorna la columna actual
+	 * donde se escribe el intento
+	 * @return columna actual
+	 */
 	public int getColumnaActual() {
 		return columnaActual;
 	}
 
+	/**
+	 * indica si la partida
+	 * ya finalizo completamente
+	 * @return true si termino
+	 */
 	public boolean isJuegoTerminado() {
 		return juegoTerminado;
 	}
 
+	/**
+	 * retorna la combinacion secreta
+	 * utilizada en la partida
+	 * @return codigo secreto
+	 */
 	public int[] getCombinacion() {
 		return numeroSecreto.getCombinacion();
 	}
 
+	/**
+	 * retorna la ultima fila
+	 * evaluada del tablero
+	 * @return fila evaluada
+	 */
 	public int getFilaEvaluada() {
 		return filaEvaluada;
 	}
