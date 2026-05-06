@@ -33,6 +33,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+/**
+ * controlador del modo de juego uno contra uno
+ * administra los turnos el temporizador y el estado de la partida
+ */
 public class PantallaJuego1vs1Controlador {
 
 	private PartidaLocal_Vs partidaVs;
@@ -65,7 +69,9 @@ public class PantallaJuego1vs1Controlador {
 	private ImageView imgJugador2;
 
 	/**
-	 * Click casilla
+	 * detecta la casilla seleccionada por el jugador
+	 * y mueve el cursor dentro de la fila actual
+	 * @param event evento generado al hacer click
 	 */
 	@FXML
 	private void seleccionarCasilla(MouseEvent event) {
@@ -85,11 +91,20 @@ public class PantallaJuego1vs1Controlador {
 		}
 	}
 
+	/**
+	 * asigna la conexion para guardar partidas
+	 * y resultados en la base de datos
+	 * @param conexion conexion activa
+	 */
 	public void setConexion(Connection conexion) {
 		this.partidaDAO = new PartidaDAO(conexion);
 		this.partidaJugadorDAO = new Partida_JugadorDAO(conexion);
 	}
 
+	/**
+	 * actualiza visualmente el turno actual
+	 * resaltando el jugador activo
+	 */
 	private void actualizarTurnoUI() {
 
 		boolean turnoJ1 = partidaVs.getTurnoActual() == partidaVs.getJugador1();
@@ -104,7 +119,8 @@ public class PantallaJuego1vs1Controlador {
 	}
 
 	/**
-	 * Inicializa temporizador y teclado
+	 * inicializa el temporizador y configura
+	 * los controles del teclado
 	 */
 	@FXML
 	public void initialize() {
@@ -113,7 +129,10 @@ public class PantallaJuego1vs1Controlador {
 	}
 
 	/**
-	 * Asigna jugadores e inicia partida
+	 * asigna los jugadores participantes
+	 * y muestra sus nombres en pantalla
+	 * @param j1 jugador uno
+	 * @param j2 jugador dos
 	 */
 	public void setJugadores(Jugador j1, Jugador j2) {
 
@@ -125,7 +144,8 @@ public class PantallaJuego1vs1Controlador {
 	}
 
 	/**
-	 * Configuración teclado
+	 * configura las teclas utilizadas durante
+	 * el desarrollo de la partida
 	 */
 	private void configurarTeclado() {
 
@@ -162,6 +182,11 @@ public class PantallaJuego1vs1Controlador {
 		});
 	}
 
+	/**
+	 * procesa las acciones de los botones
+	 * utilizados para ingresar numeros
+	 * @param event evento generado por el boton
+	 */
 	@FXML
 	private void presionarBoton(ActionEvent event) {
 
@@ -183,9 +208,6 @@ public class PantallaJuego1vs1Controlador {
 				return;
 			}
 
-			/**
-			 * Valida que no existan ceros en la fila
-			 */
 			for (int i = 0; i < 5; i++) {
 
 				if (p.getValorCelda(p.getFilaActual(), i).equals("0")) {
@@ -209,6 +231,11 @@ public class PantallaJuego1vs1Controlador {
 		}
 	}
 
+	/**
+	 * muestra un mensaje temporal en pantalla
+	 * durante un corto periodo de tiempo
+	 * @param mensaje texto mostrado
+	 */
 	private void mostrarAlertaTemporal(String mensaje) {
 
 		Stage popup = new Stage();
@@ -230,7 +257,8 @@ public class PantallaJuego1vs1Controlador {
 	}
 
 	/**
-	 * Manejo de turno
+	 * controla el envio de intentos y el avance
+	 * de rondas dentro de la partida
 	 */
 	private void manejarEnter() {
 
@@ -247,8 +275,6 @@ public class PantallaJuego1vs1Controlador {
 		if (estado.equals("FIN")) {
 
 			juegoFinalizado = true;
-			guardarHistorial();
-
 			guardarHistorial();
 
 			Partida p1 = partidaVs.getPartidaJ1();
@@ -284,10 +310,10 @@ public class PantallaJuego1vs1Controlador {
 			Partida p1 = partidaVs.getPartidaJ1();
 			Partida p2 = partidaVs.getPartidaJ2();
 
-			String mensaje = "EMPATE\n\n" + "CODIGO J1: " + convertirCodigo(p1.getCombinacion()) + "\n" + "CODIGO J2: "
-					+ convertirCodigo(p2.getCombinacion());
+			String mensaje = "EMPATE\n\n" + "CODIGO J1: " + convertirCodigo(p1.getCombinacion()) + "\n"
+					+ "CODIGO J2: " + convertirCodigo(p2.getCombinacion());
 
-			mostrarFinal(mensaje, false); // 👈 IMPORTANTE
+			mostrarFinal(mensaje, false);
 
 			detenerTemporizador();
 			return;
@@ -303,7 +329,8 @@ public class PantallaJuego1vs1Controlador {
 	}
 
 	/**
-	 * Tiempo agotado
+	 * inicia y controla el temporizador
+	 * del turno actual
 	 */
 	private void iniciarTemporizador() {
 
@@ -375,6 +402,11 @@ public class PantallaJuego1vs1Controlador {
 		timeline.play();
 	}
 
+	/**
+	 * asigna la partida actual del modo uno contra uno
+	 * e inicia la actualizacion del juego
+	 * @param partida partida activa
+	 */
 	public void setPartida(PartidaLocal_Vs partida) {
 		this.partidaVs = partida;
 
@@ -383,7 +415,8 @@ public class PantallaJuego1vs1Controlador {
 	}
 
 	/**
-	 * Pintar ronda completa
+	 * pinta los resultados de la ronda completa
+	 * para ambos jugadores
 	 */
 	private void pintarRondaCompleta() {
 
@@ -398,7 +431,10 @@ public class PantallaJuego1vs1Controlador {
 	}
 
 	/**
-	 * Convierte el código a texto
+	 * convierte el codigo secreto en texto
+	 * para mostrarlo en pantalla
+	 * @param c arreglo del codigo secreto
+	 * @return codigo convertido a texto
 	 */
 	private String convertirCodigo(int[] c) {
 
@@ -415,7 +451,10 @@ public class PantallaJuego1vs1Controlador {
 	}
 
 	/**
-	 * Popup final
+	 * muestra el mensaje final de la partida
+	 * indicando ganador o empate
+	 * @param mensaje texto mostrado
+	 * @param empateSinAcierto indica si no hubo ganador
 	 */
 	private void mostrarFinal(String mensaje, boolean empateSinAcierto) {
 
@@ -458,6 +497,10 @@ public class PantallaJuego1vs1Controlador {
 		pausa.play();
 	}
 
+	/**
+	 * regresa al menu principal del juego
+	 * despues de finalizar la partida
+	 */
 	private void volverMenu() {
 		try {
 
@@ -478,6 +521,11 @@ public class PantallaJuego1vs1Controlador {
 		}
 	}
 
+	/**
+	 * muestra una confirmacion para salir
+	 * y regresar al menu principal
+	 * @param event evento generado por el boton
+	 */
 	@FXML
 	public void irMenuJugador(ActionEvent event) {
 
@@ -535,20 +583,37 @@ public class PantallaJuego1vs1Controlador {
 		btnCancelar.setOnAction(e -> popup.close());
 	}
 
+	/**
+	 * actualiza el tiempo restante en pantalla
+	 * utilizando el temporizador actual
+	 */
 	private void actualizarTiempo() {
 		txtId12.setText(temporizador.getTiempoFormateado());
 	}
 
+	/**
+	 * detiene el temporizador de la partida
+	 * cuando el juego termina o se pausa
+	 */
 	private void detenerTemporizador() {
 		if (timeline != null)
 			timeline.stop();
 	}
 
+	/**
+	 * verifica si el turno actual esta habilitado
+	 * para el jugador correspondiente
+	 * @return true si el turno esta activo
+	 */
 	private boolean esTurnoActivo() {
 		return partidaVs.getTurnoActual() == partidaVs.getJugador1() ? !gridCasillas.isDisabled()
 				: !gridCasillas1.isDisabled();
 	}
 
+	/**
+	 * habilita y deshabilita los tableros
+	 * dependiendo del jugador en turno
+	 */
 	private void actualizarTurno() {
 		boolean j1 = partidaVs.getTurnoActual() == partidaVs.getJugador1();
 		gridCasillas.setDisable(!j1);
@@ -557,11 +622,26 @@ public class PantallaJuego1vs1Controlador {
 		actualizarTurnoUI();
 	}
 
+	/**
+	 * obtiene la casilla activa del tablero
+	 * segun la fila y columna indicadas
+	 * @param fila fila buscada
+	 * @param col columna buscada
+	 * @return boton encontrado
+	 */
 	private Button getNodeActivo(int fila, int col) {
 		GridPane grid = partidaVs.getTurnoActual() == partidaVs.getJugador1() ? gridCasillas : gridCasillas1;
 		return getNode(grid, fila, col);
 	}
 
+	/**
+	 * busca un boton especifico dentro del grid
+	 * utilizando la fila y columna indicadas
+	 * @param grid tablero utilizado
+	 * @param fila fila buscada
+	 * @param col columna buscada
+	 * @return boton encontrado
+	 */
 	private Button getNode(GridPane grid, int fila, int col) {
 
 		for (Node n : grid.getChildren()) {
@@ -576,6 +656,12 @@ public class PantallaJuego1vs1Controlador {
 		return null;
 	}
 
+	/**
+	 * pinta una fila anulada cuando el jugador
+	 * pierde el turno por tiempo agotado
+	 * @param fila fila anulada
+	 * @param partida partida relacionada
+	 */
 	private void pintarFilaAnulada(int fila, Partida partida) {
 
 		GridPane grid = (partida == partidaVs.getPartidaJ1()) ? gridCasillas : gridCasillas1;
@@ -591,6 +677,13 @@ public class PantallaJuego1vs1Controlador {
 		}
 	}
 
+	/**
+	 * colorea las casillas dependiendo
+	 * del resultado obtenido en el intento
+	 * @param grid tablero utilizado
+	 * @param fila fila evaluada
+	 * @param resultado resultado de la jugada
+	 */
 	private void pintarResultado(GridPane grid, int fila, String[] resultado) {
 
 		for (int i = 0; i < 5; i++) {
@@ -612,6 +705,10 @@ public class PantallaJuego1vs1Controlador {
 		}
 	}
 
+	/**
+	 * guarda el resultado final de la partida
+	 * dentro del historial de jugadores
+	 */
 	private void guardarHistorial() {
 
 		int idPartida = partidaDAO.crearPartida();
@@ -635,13 +732,10 @@ public class PantallaJuego1vs1Controlador {
 				partidaJugadorDAO.guardar(idPartida, j1.getId(), "DERROTA");
 			}
 
-		}
-
-		else {
+		} else {
 
 			partidaJugadorDAO.guardar(idPartida, j1.getId(), "DERROTA");
 			partidaJugadorDAO.guardar(idPartida, j2.getId(), "DERROTA");
 		}
 	}
-
 }
