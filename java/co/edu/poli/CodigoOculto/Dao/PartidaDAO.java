@@ -1,20 +1,29 @@
-/**
- * DAO encargado de la creación de partidas.
- */
 package co.edu.poli.CodigoOculto.Dao;
 
 import java.sql.*;
 
+/**
+ * dao encargado de gestionar
+ * la creacion de partidas en la bd
+ */
 public class PartidaDAO {
 
 	private Connection conexion;
 
+	/**
+	 * recibe la conexion utilizada
+	 * para ejecutar consultas sql
+	 * @param conexion conexion activa
+	 */
 	public PartidaDAO(Connection conexion) {
 		this.conexion = conexion;
 	}
 
 	/**
-	 * Crea una nueva partida y retorna su ID generado.
+	 * crea una nueva partida dentro
+	 * de la base de datos y retorna
+	 * el id generado automaticamente
+	 * @return id de la partida creada
 	 */
 	public int crearPartida() {
 
@@ -22,7 +31,9 @@ public class PartidaDAO {
 
 		try {
 
-			PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conexion.prepareStatement(
+					sql,
+					Statement.RETURN_GENERATED_KEYS);
 
 			ps.executeUpdate();
 
