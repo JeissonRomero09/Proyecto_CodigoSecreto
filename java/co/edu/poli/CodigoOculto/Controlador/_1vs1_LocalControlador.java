@@ -24,6 +24,10 @@ import javafx.scene.layout.VBox;
 
 import java.sql.Connection;
 
+/**
+ * controlador encargado de gestionar
+ * el inicio de partidas locales 1 vs 1
+ */
 public class _1vs1_LocalControlador {
 
 	private Jugador jugador1;
@@ -38,7 +42,9 @@ public class _1vs1_LocalControlador {
 	private Text textoNombre;
 
 	/**
-	 * Recibe el jugador 1 desde otra pantalla y actualiza la vista.
+	 * recibe el jugador principal desde
+	 * otra pantalla y actualiza la vista
+	 * @param jugador jugador principal
 	 */
 	public void setJugador(Jugador jugador) {
 		this.jugador1 = jugador;
@@ -46,7 +52,8 @@ public class _1vs1_LocalControlador {
 	}
 
 	/**
-	 * Método automático al cargar la vista JavaFX.
+	 * inicializa la pantalla cuando
+	 * el fxml termina de cargar
 	 */
 	@FXML
 	public void initialize() {
@@ -54,7 +61,8 @@ public class _1vs1_LocalControlador {
 	}
 
 	/**
-	 * Actualiza el texto en pantalla con el nombre del jugador 1.
+	 * actualiza el texto mostrado con
+	 * el nombre del jugador 1
 	 */
 	private void actualizarTexto() {
 		if (textoNombre != null && jugador1 != null) {
@@ -63,12 +71,9 @@ public class _1vs1_LocalControlador {
 	}
 
 	/**
-	 * Inicia la partida 1 vs 1.
-	 * 
-	 * Validaciones: - ID válido - Conexión a base de datos - Existencia del jugador
-	 * 2 - Reglas del modelo
-	 * 
-	 * Luego carga la pantalla de juego.
+	 * inicia una partida local entre dos jugadores
+	 * realizando validaciones de ids y conexion
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void iniciarPartida(ActionEvent event) {
@@ -92,7 +97,7 @@ public class _1vs1_LocalControlador {
 			}
 
 			/**
-			 * Conexión a base de datos
+			 * conexion a base de datos
 			 */
 			Connection conexion = ConexionBD.conectar();
 			this.conexion = conexion;
@@ -103,7 +108,7 @@ public class _1vs1_LocalControlador {
 			}
 
 			/**
-			 * Búsqueda del jugador 2
+			 * busqueda del jugador 2
 			 */
 			JugadorDAO dao = new JugadorDAO(conexion);
 			jugador2 = dao.buscarJugadorPorId(idInt);
@@ -114,12 +119,12 @@ public class _1vs1_LocalControlador {
 			}
 
 			/**
-			 * Creación del modelo de partida
+			 * creacion del modelo de partida
 			 */
 			partida = new PartidaLocal_Vs();
 
 			/**
-			 * Validación de reglas del juego
+			 * validacion de reglas del juego
 			 */
 			EstadoInicio estado = partida.validarInicio(jugador1, jugador2);
 
@@ -129,11 +134,15 @@ public class _1vs1_LocalControlador {
 			}
 
 			/**
-			 * Confirmación del usuario
+			 * confirmacion del usuario antes
+			 * de comenzar la partida
 			 */
-			boolean confirmar = mostrarConfirmacion("¿Deseas iniciar partida 1 vs 1?\n\n"
-					+ "Al terminar la partida, la sesión del jugador 2 se cerrará\n\n" + "ID: " + jugador2.getId()
-					+ "\n" + "Nombre: " + jugador2.getNombre());
+			boolean confirmar = mostrarConfirmacion(
+					"¿Deseas iniciar partida 1 vs 1?\n\n"
+					+ "Al terminar la partida, la sesión del jugador 2 se cerrará\n\n"
+					+ "ID: " + jugador2.getId()
+					+ "\n"
+					+ "Nombre: " + jugador2.getNombre());
 
 			if (!confirmar)
 				return;
@@ -141,7 +150,7 @@ public class _1vs1_LocalControlador {
 			partida.iniciar(jugador1, jugador2);
 
 			/**
-			 * Carga de pantalla de juego
+			 * carga de pantalla de juego
 			 */
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/co/edu/poli/CodigoOculto/Vista/PantallaJuego1vs1.fxml"));
@@ -166,7 +175,9 @@ public class _1vs1_LocalControlador {
 	}
 
 	/**
-	 * Muestra un popup informativo en pantalla.
+	 * muestra un mensaje emergente temporal
+	 * con informacion o errores del sistema
+	 * @param mensaje mensaje mostrado
 	 */
 	private void mostrarPopup(String mensaje) {
 
@@ -196,7 +207,10 @@ public class _1vs1_LocalControlador {
 	}
 
 	/**
-	 * Muestra un popup de confirmación con botones.
+	 * muestra una ventana de confirmacion
+	 * antes de iniciar la partida
+	 * @param mensaje mensaje de confirmacion
+	 * @return true si acepta iniciar
 	 */
 	private boolean mostrarConfirmacion(String mensaje) {
 
@@ -238,7 +252,9 @@ public class _1vs1_LocalControlador {
 	}
 
 	/**
-	 * Regresa al menú principal del juego.
+	 * regresa al menu principal del juego
+	 * manteniendo la sesion del jugador 1
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void volverMenu(ActionEvent event) {
