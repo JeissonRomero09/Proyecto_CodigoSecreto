@@ -9,16 +9,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * controlador de la vista como jugar
+ * permite volver al menu principal
+ */
 public class ComoJugarControlador {
 
 	private Jugador jugador;
 
+	/**
+	 * asigna el jugador actual
+	 * @param jugador jugador activo
+	 */
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
 	}
 
 	/**
-	 * Redirige al menú principal del jugador
+	 * cambia la vista al menu principal
+	 * y conserva la informacion del jugador
+	 * @param event evento generado
 	 */
 	@FXML
 	private void irMenuJugador(ActionEvent event) {
