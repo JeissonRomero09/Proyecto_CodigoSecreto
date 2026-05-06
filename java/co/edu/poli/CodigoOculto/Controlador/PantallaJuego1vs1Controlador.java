@@ -183,6 +183,18 @@ public class PantallaJuego1vs1Controlador {
 				return;
 			}
 
+			/**
+			 * Valida que no existan ceros en la fila
+			 */
+			for (int i = 0; i < 5; i++) {
+
+				if (p.getValorCelda(p.getFilaActual(), i).equals("0")) {
+
+					mostrarAlertaTemporal("No puedes ingresar 0");
+					return;
+				}
+			}
+
 			manejarEnter();
 			return;
 		}
@@ -212,7 +224,7 @@ public class PantallaJuego1vs1Controlador {
 		popup.setScene(new Scene(root));
 		popup.show();
 
-		PauseTransition pausa = new PauseTransition(Duration.seconds(2));
+		PauseTransition pausa = new PauseTransition(Duration.seconds(1));
 		pausa.setOnFinished(e -> popup.close());
 		pausa.play();
 	}
@@ -434,7 +446,7 @@ public class PantallaJuego1vs1Controlador {
 		popup.setScene(scene);
 		popup.show();
 
-		PauseTransition pausa = new PauseTransition(Duration.seconds(6));
+		PauseTransition pausa = new PauseTransition(Duration.seconds(5));
 
 		pausa.setOnFinished(e -> {
 

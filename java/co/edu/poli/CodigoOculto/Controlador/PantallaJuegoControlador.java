@@ -306,12 +306,24 @@ public class PantallaJuegoControlador {
 
 	    if (texto.equalsIgnoreCase("Enter")) {
 
-	        if (!partida.esFilaCompleta()) {
-	        	mostrarAlertaTemporal("Completa toda la fila antes de continuar");
-	            return;
-	        }
+	    	if (!partida.esFilaCompleta()) {
+	    		mostrarAlertaTemporal("Completa toda la fila antes de continuar");
+	    		return;
+	    	}
 
-	        String estado = partida.procesarIntento();
+	    	/**
+	    	 * Valida que la fila no contenga ceros
+	    	 */
+	    	for (int i = 0; i < 5; i++) {
+
+	    		if (partida.getValorCelda(partida.getFilaActual(), i).equals("0")) {
+
+	    			mostrarAlertaTemporal("No puedes ingresar 0");
+	    			return;
+	    		}
+	    	}
+
+	    	String estado = partida.procesarIntento();
 
 	        switch (estado) {
 
@@ -399,7 +411,7 @@ public class PantallaJuegoControlador {
 	    popup.setScene(new Scene(root));
 	    popup.show();
 
-	    PauseTransition pausa = new PauseTransition(Duration.seconds(2));
+	    PauseTransition pausa = new PauseTransition(Duration.seconds(1));
 
 	    pausa.setOnFinished(e -> popup.close());
 

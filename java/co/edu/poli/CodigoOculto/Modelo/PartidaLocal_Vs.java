@@ -22,7 +22,6 @@ public class PartidaLocal_Vs {
 	private boolean j2YaJugo;
 
 	private Jugador ganador;
-
 	/**
 	 * Estados posibles al iniciar la partida
 	 */
@@ -37,6 +36,7 @@ public class PartidaLocal_Vs {
 
 		if (j2 == null)
 			return EstadoInicio.JUGADOR_NO_EXISTE;
+
 		if (j1.getId() == j2.getId())
 			return EstadoInicio.MISMO_JUGADOR;
 
@@ -44,19 +44,32 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * Inicializa la partida: - Asigna jugadores - Crea partidas individuales -
-	 * Define turno aleatorio
+	 * Inicializa la partida:
+	 * - Asigna jugadores
+	 * - Crea partidas individuales
+	 * - Genera números secretos
+	 * - Define turno aleatorio
 	 */
 	public void iniciar(Jugador j1, Jugador j2) {
 
 		this.jugador1 = j1;
 		this.jugador2 = j2;
 
-		this.partidaJ1 = new Partida();
-		this.partidaJ2 = new Partida();
+		this.partidaJ1 = new Partida(
+				jugador1,
+				new NumeroSecreto(5)
+		);
+
+		this.partidaJ2 = new Partida(
+				jugador2,
+				new NumeroSecreto(5)
+		);
 
 		Random r = new Random();
-		this.turnoActual = (r.nextBoolean()) ? jugador1 : jugador2;
+
+		this.turnoActual = (r.nextBoolean())
+				? jugador1
+				: jugador2;
 
 		this.j1YaJugo = false;
 		this.j2YaJugo = false;

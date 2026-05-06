@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import co.edu.poli.CodigoOculto.Dao.ConexionBD;
 import co.edu.poli.CodigoOculto.Modelo.Jugador;
+import co.edu.poli.CodigoOculto.Modelo.NumeroSecreto;
 import co.edu.poli.CodigoOculto.Modelo.Partida;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,8 +68,16 @@ public class MenuJuegoControlador {
 	public void irAPantallaJuego(ActionEvent event) {
 		cambiarEscena(event, "/co/edu/poli/CodigoOculto/Vista/PantallaJuego.fxml",
 				(PantallaJuegoControlador controller) -> {
+
 					controller.setJugador(jugador);
-					controller.setPartida(new Partida());
+
+					controller.setPartida(
+							new Partida(
+									jugador,
+									new NumeroSecreto(5)
+							)
+					);
+
 					controller.setConexion(conexion);
 				});
 	}

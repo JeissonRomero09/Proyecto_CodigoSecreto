@@ -16,24 +16,22 @@ public class Partida {
 
 	private int filaEvaluada;
 
-	/**
-	 * Inicializa la partida
-	 */
-	public Partida() {
-		iniciarPartida();
-	}
+	private Jugador jugador;
 
 	/**
-	 * Reinicia la partida
+	 * Inicializa la partida con su jugador y número secreto
 	 */
-	public void iniciarPartida() {
+	public Partida(Jugador jugador, NumeroSecreto numeroSecreto) {
+
+		this.jugador = jugador;
+		this.numeroSecreto = numeroSecreto;
+
 		this.tablero = new String[MAX_FILAS][MAX_COLUMNAS];
 		this.filaActual = 0;
 		this.columnaActual = 0;
 		this.juegoTerminado = false;
-		this.numeroSecreto = new NumeroSecreto(MAX_COLUMNAS);
 	}
-
+	
 	public boolean realizarIntento(String numero) {
 
 		if (juegoTerminado || columnaActual >= MAX_COLUMNAS)
