@@ -20,8 +20,8 @@ import javafx.scene.layout.StackPane;
 import javafx.geometry.Pos;
 
 /**
- * Controlador del menú principal del juego. Gestiona la navegación entre
- * pantallas y la sesión del jugador.
+ * controlador del menu principal del juego
+ * gestiona la navegacion y la sesion del jugador
  */
 public class MenuJuegoControlador {
 
@@ -36,7 +36,9 @@ public class MenuJuegoControlador {
 	private Connection conexion = ConexionBD.conectar();
 
 	/**
-	 * Asigna el jugador actual al menú y actualiza la vista.
+	 * asigna el jugador actual y actualiza
+	 * la informacion mostrada en pantalla
+	 * @param jugador jugador activo
 	 */
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
@@ -44,7 +46,8 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Inicializa el controlador al cargar la vista.
+	 * inicializa el controlador al cargar la vista
+	 * y establece la conexion con la base de datos
 	 */
 	@FXML
 	public void initialize() {
@@ -53,7 +56,9 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Redirige a la pantalla "Cómo jugar".
+	 * redirige a la pantalla de como jugar
+	 * manteniendo la informacion del jugador
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void irAComoJugar(ActionEvent event) {
@@ -62,7 +67,9 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Inicia una partida individual contra la máquina o modo principal.
+	 * inicia una nueva partida del juego
+	 * y envia los datos necesarios al controlador
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void irAPantallaJuego(ActionEvent event) {
@@ -83,7 +90,8 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Redirige al modo de juego 1 vs 1 local.
+	 * abre el modo de juego local uno contra uno
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void irA1vs1Local(ActionEvent event) {
@@ -92,8 +100,9 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Abre la pantalla de historial del jugador. Valida que el jugador no sea
-	 * invitado y que exista conexión.
+	 * abre la pantalla de historial del jugador
+	 * y valida que no sea un usuario invitado
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void irAHistorial(ActionEvent event) {
@@ -136,7 +145,9 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Cierra la sesión del jugador y vuelve al menú principal del sistema.
+	 * cierra la sesion actual del jugador
+	 * y regresa al menu principal
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void cerrarSesion(ActionEvent event) {
@@ -153,7 +164,11 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Método genérico para cambiar de escena y enviar datos al controlador destino.
+	 * cambia la escena actual y envia
+	 * informacion al nuevo controlador
+	 * @param event evento generado
+	 * @param rutaFXML ruta de la vista fxml
+	 * @param setter metodo para enviar datos
 	 */
 	private <T> void cambiarEscena(ActionEvent event, String rutaFXML, ControllerSetter<T> setter) {
 		try {
@@ -176,14 +191,16 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Interfaz funcional para inyectar datos al controlador destino.
+	 * interfaz utilizada para enviar datos
+	 * al controlador de la nueva escena
 	 */
 	private interface ControllerSetter<T> {
 		void set(T controller);
 	}
 
 	/**
-	 * Actualiza la información del jugador en pantalla.
+	 * actualiza los textos del jugador
+	 * mostrados dentro de la interfaz
 	 */
 	private void actualizarTexto() {
 		if (jugador != null) {
@@ -197,14 +214,17 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * Retorna el jugador actual.
+	 * retorna el jugador actual de la sesion
+	 * @return jugador activo
 	 */
 	public Jugador getJugador() {
 		return jugador;
 	}
 
 	/**
-	 * Muestra un mensaje emergente tipo popup en pantalla.
+	 * muestra un mensaje emergente en pantalla
+	 * durante unos segundos
+	 * @param mensaje texto a mostrar
 	 */
 	private void mostrarPopup(String mensaje) {
 
