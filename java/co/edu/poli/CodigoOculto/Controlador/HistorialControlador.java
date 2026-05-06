@@ -17,7 +17,8 @@ import co.edu.poli.CodigoOculto.Dao.ConexionBD;
 import java.sql.Connection;
 
 /**
- * Controlador encargado de mostrar el historial y estadísticas del jugador.
+ * controlador encargado de mostrar el historial del jugador
+ * y sus estadisticas dentro del juego
  */
 public class HistorialControlador {
 
@@ -38,12 +39,15 @@ public class HistorialControlador {
 	private Partida_JugadorDAO partidaJugadorDAO;
 
 	/**
-	 * Conexión a base de datos utilizada para consultar estadísticas.
+	 * conexion utilizada para consultar la informacion
+	 * almacenada en la base de datos
 	 */
 	private Connection conexion = ConexionBD.conectar();
 
 	/**
-	 * Asigna la conexión a la base de datos y crea el DAO de partidas.
+	 * asigna la conexion y crea el dao de partidas
+	 * para poder consultar las estadisticas del jugador
+	 * @param conexion conexion activa a la base de datos
 	 */
 	public void setConexion(Connection conexion) {
 		this.conexion = conexion;
@@ -52,7 +56,9 @@ public class HistorialControlador {
 	}
 
 	/**
-	 * Asigna el jugador actual para mostrar su historial.
+	 * asigna el jugador actual para cargar
+	 * su historial y estadisticas
+	 * @param jugador jugador activo
 	 */
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
@@ -60,8 +66,8 @@ public class HistorialControlador {
 	}
 
 	/**
-	 * Verifica que todos los datos necesarios estén listos antes de cargar
-	 * información.
+	 * verifica que todos los datos necesarios
+	 * esten listos antes de cargar la informacion
 	 */
 	private void cargarSiListo() {
 
@@ -76,7 +82,8 @@ public class HistorialControlador {
 	}
 
 	/**
-	 * Consulta la base de datos y carga las estadísticas del jugador.
+	 * obtiene las estadisticas del jugador
+	 * y las muestra en los textos de la vista
 	 */
 	private void cargarEstadisticas() {
 
@@ -97,7 +104,9 @@ public class HistorialControlador {
 	}
 
 	/**
-	 * Regresa al menú principal del juego.
+	 * regresa al menu principal del juego
+	 * manteniendo la informacion del jugador
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	private void volverMenu(javafx.event.ActionEvent event) {
