@@ -39,6 +39,10 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+/**
+ * controlador encargado de administrar
+ * la logica del modo de juego individual
+ */
 public class PantallaJuegoControlador {
 
 	private Partida partida;
@@ -46,7 +50,6 @@ public class PantallaJuegoControlador {
 	private Timeline timeline;
 	private Jugador jugador;
 
-	
 	private PartidaDAO partidaDAO;
 	private Partida_JugadorDAO partidaJugadorDAO;
 
@@ -59,12 +62,20 @@ public class PantallaJuegoControlador {
 	@FXML
 	private GridPane gridCasillas;
 
-	// recibir partida
+	/**
+	 * recibe la partida actual del juego
+	 * para controlar el progreso del jugador
+	 * @param partida partida asignada
+	 */
 	public void setPartida(Partida partida) {
 		this.partida = partida;
 	}
 
-	// recibir jugador
+	/**
+	 * asigna el jugador actual y actualiza
+	 * la informacion mostrada en pantalla
+	 * @param jugador jugador activo
+	 */
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
 		if (txtId != null) {
@@ -72,11 +83,20 @@ public class PantallaJuegoControlador {
 		}
 	}
 
+	/**
+	 * asigna la conexion utilizada para guardar
+	 * partidas y resultados en la base de datos
+	 * @param conexion conexion activa
+	 */
 	public void setConexion(Connection conexion) {
 		this.partidaDAO = new PartidaDAO(conexion);
 		this.partidaJugadorDAO = new Partida_JugadorDAO(conexion);
 	}
 
+	/**
+	 * inicializa el controlador y prepara
+	 * el temporizador y controles del teclado
+	 */
 	@FXML
 	public void initialize() {
 		temporizador = new Temporizador();
@@ -88,6 +108,11 @@ public class PantallaJuegoControlador {
 		});
 	}
 
+	/**
+	 * guarda el resultado final de la partida
+	 * dentro del historial del jugador
+	 * @param resultado resultado obtenido
+	 */
 	private void guardarHistorial(String resultado) {
 
 		int idPartida = partidaDAO.crearPartida();
@@ -100,7 +125,11 @@ public class PantallaJuegoControlador {
 		partidaJugadorDAO.guardar(idPartida, jugador.getId(), resultado);
 	}
 
-	// volver al menu
+	/**
+	 * muestra una confirmacion para salir
+	 * de la partida y volver al menu
+	 * @param event evento generado por el boton
+	 */
 	@FXML
 	private void irMenuJugador(ActionEvent event) {
 
@@ -120,7 +149,6 @@ public class PantallaJuegoControlador {
 		root.setAlignment(Pos.CENTER);
 		root.setStyle("-fx-background-color: rgba(0,0,0,0.85); -fx-padding: 30;");
 
-		// agregar botones al layout
 		root.getChildren().addAll(btnSalir, btnCancelar);
 
 		StackPane.setAlignment(btnSalir, Pos.BOTTOM_LEFT);
@@ -130,7 +158,6 @@ public class PantallaJuegoControlador {
 		popup.setScene(scene);
 		popup.show();
 
-		// ACCIÓN BOTÓN SALIR
 		btnSalir.setOnAction(e -> {
 
 			try {
@@ -157,11 +184,13 @@ public class PantallaJuegoControlador {
 			}
 		});
 
-		// ACCIÓN CANCELAR
 		btnCancelar.setOnAction(e -> popup.close());
 	}
 
-	// configurar teclado
+	/**
+	 * configura las teclas utilizadas durante
+	 * la partida para ingresar numeros
+	 */
 	private void configurarTeclado() {
 
 		Scene scene = gridCasillas.getScene();
@@ -197,12 +226,12 @@ public class PantallaJuegoControlador {
 				switch (estado) {
 
 				case "GANASTE":
-					guardarHistorial("VICTORIA"); 
+					guardarHistorial("VICTORIA");
 					mostrarAlertaYReiniciar("GANASTE");
 					break;
 
 				case "PERDISTE":
-					guardarHistorial("DERROTA"); 
+					guardarHistorial("DERROTA");
 					mostrarAlertaYReiniciar("PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
 					break;
 
@@ -216,7 +245,10 @@ public class PantallaJuegoControlador {
 		gridCasillas.requestFocus();
 	}
 
-	// iniciar temporizador
+	/**
+	 * inicia y controla el temporizador
+	 * utilizado durante la partida
+	 */
 	private void iniciarTemporizador() {
 
 		if (timeline != null) {
@@ -241,7 +273,7 @@ public class PantallaJuegoControlador {
 
 				if (estado.equals("PERDISTE")) {
 
-					guardarHistorial("DERROTA"); 
+					guardarHistorial("DERROTA");
 					mostrarAlertaYReiniciar("PERDISTE");
 
 				} else {
@@ -254,7 +286,11 @@ public class PantallaJuegoControlador {
 		timeline.play();
 	}
 
-	// pintar fila anulada
+	/**
+	 * pinta una fila anulada cuando
+	 * el tiempo del jugador se agota
+	 * @param fila fila anulada
+	 */
 	private void pintarFilaAnulada(int fila) {
 
 		for (int i = 0; i < 5; i++) {
@@ -268,7 +304,11 @@ public class PantallaJuegoControlador {
 		}
 	}
 
-	// pintar resultado
+	/**
+	 * pinta las casillas dependiendo
+	 * del resultado obtenido
+	 * @param resultado arreglo con resultados
+	 */
 	private void pintarResultado(String[] resultado) {
 
 		int fila = partida.getFilaEvaluada();
@@ -295,73 +335,78 @@ public class PantallaJuegoControlador {
 		}
 	}
 
+	/**
+	 * procesa los botones numericos y enter
+	 * utilizados durante el juego
+	 * @param event evento generado por el boton
+	 */
 	@FXML
 	private void presionarBoton(ActionEvent event) {
 
-	    if (partida == null)
-	        return;
+		if (partida == null)
+			return;
 
-	    Button btn = (Button) event.getSource();
-	    String texto = btn.getText();
+		Button btn = (Button) event.getSource();
+		String texto = btn.getText();
 
-	    if (texto.equalsIgnoreCase("Enter")) {
+		if (texto.equalsIgnoreCase("Enter")) {
 
-	    	if (!partida.esFilaCompleta()) {
-	    		mostrarAlertaTemporal("Completa toda la fila antes de continuar");
-	    		return;
-	    	}
+			if (!partida.esFilaCompleta()) {
+				mostrarAlertaTemporal("Completa toda la fila antes de continuar");
+				return;
+			}
 
-	    	/**
-	    	 * Valida que la fila no contenga ceros
-	    	 */
-	    	for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 5; i++) {
 
-	    		if (partida.getValorCelda(partida.getFilaActual(), i).equals("0")) {
+				if (partida.getValorCelda(partida.getFilaActual(), i).equals("0")) {
 
-	    			mostrarAlertaTemporal("No puedes ingresar 0");
-	    			return;
-	    		}
-	    	}
+					mostrarAlertaTemporal("No puedes ingresar 0");
+					return;
+				}
+			}
 
-	    	String estado = partida.procesarIntento();
+			String estado = partida.procesarIntento();
 
-	        switch (estado) {
+			switch (estado) {
 
-	        case "GANASTE":
-	            pintarResultado(partida.getUltimoResultado());
-	            guardarHistorial("VICTORIA"); 
-	            mostrarAlertaYReiniciar("GANASTE");
-	            break;
+			case "GANASTE":
+				pintarResultado(partida.getUltimoResultado());
+				guardarHistorial("VICTORIA");
+				mostrarAlertaYReiniciar("GANASTE");
+				break;
 
-	        case "PERDISTE":
-	            pintarResultado(partida.getUltimoResultado());
-	            guardarHistorial("DERROTA"); 
-	            mostrarAlertaYReiniciar("PERDISTE\nCombinacion: " 
-	                + Arrays.toString(partida.getCombinacion()));
-	            break;
+			case "PERDISTE":
+				pintarResultado(partida.getUltimoResultado());
+				guardarHistorial("DERROTA");
+				mostrarAlertaYReiniciar(
+						"PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
+				break;
 
-	        case "CONTINUA":
-	            pintarResultado(partida.getUltimoResultado());
-	            iniciarTemporizador();
-	            break;
-	        }
-	        return;
-	    }
-	    
-	    
+			case "CONTINUA":
+				pintarResultado(partida.getUltimoResultado());
+				iniciarTemporizador();
+				break;
+			}
+			return;
+		}
 
-	    int fila = partida.getFilaActual();
-	    int col = partida.getColumnaActual();
+		int fila = partida.getFilaActual();
+		int col = partida.getColumnaActual();
 
-	    if (partida.realizarIntento(texto)) {
+		if (partida.realizarIntento(texto)) {
 
-	        Button casilla = getNode(fila, col);
-	        if (casilla != null) {
-	            casilla.setText(texto);
-	        }
-	    }
+			Button casilla = getNode(fila, col);
+			if (casilla != null) {
+				casilla.setText(texto);
+			}
+		}
 	}
 
+	/**
+	 * detecta la casilla seleccionada
+	 * y mueve el cursor manualmente
+	 * @param event evento generado al hacer click
+	 */
 	@FXML
 	private void seleccionarCasilla(MouseEvent event) {
 
@@ -378,10 +423,21 @@ public class PantallaJuegoControlador {
 		}
 	}
 
+	/**
+	 * actualiza el tiempo restante mostrado
+	 * en pantalla durante la partida
+	 */
 	private void actualizarTiempo() {
 		txtId1.setText(temporizador.getTiempoFormateado());
 	}
 
+	/**
+	 * obtiene un boton especifico del tablero
+	 * usando fila y columna
+	 * @param fila fila buscada
+	 * @param columna columna buscada
+	 * @return boton encontrado
+	 */
 	private Button getNode(int fila, int columna) {
 
 		for (Node node : gridCasillas.getChildren()) {
@@ -395,29 +451,39 @@ public class PantallaJuegoControlador {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * muestra una alerta corta en pantalla
+	 * durante unos segundos
+	 * @param mensaje mensaje mostrado
+	 */
 	private void mostrarAlertaTemporal(String mensaje) {
 
-	    Stage popup = new Stage();
-	    popup.initStyle(StageStyle.UNDECORATED);
+		Stage popup = new Stage();
+		popup.initStyle(StageStyle.UNDECORATED);
 
-	    Label texto = new Label(mensaje);
-	    texto.setStyle("-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;");
+		Label texto = new Label(mensaje);
+		texto.setStyle("-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;");
 
-	    StackPane root = new StackPane(texto);
-	    root.setAlignment(Pos.CENTER);
-	    root.setStyle("-fx-background-color: rgba(0,0,0,0.85); -fx-padding: 25;");
+		StackPane root = new StackPane(texto);
+		root.setAlignment(Pos.CENTER);
+		root.setStyle("-fx-background-color: rgba(0,0,0,0.85); -fx-padding: 25;");
 
-	    popup.setScene(new Scene(root));
-	    popup.show();
+		popup.setScene(new Scene(root));
+		popup.show();
 
-	    PauseTransition pausa = new PauseTransition(Duration.seconds(1));
+		PauseTransition pausa = new PauseTransition(Duration.seconds(1));
 
-	    pausa.setOnFinished(e -> popup.close());
+		pausa.setOnFinished(e -> popup.close());
 
-	    pausa.play();
+		pausa.play();
 	}
 
+	/**
+	 * muestra el resultado final de la partida
+	 * y luego regresa al menu principal
+	 * @param mensaje mensaje final mostrado
+	 */
 	private void mostrarAlertaYReiniciar(String mensaje) {
 
 		if (timeline != null) {
