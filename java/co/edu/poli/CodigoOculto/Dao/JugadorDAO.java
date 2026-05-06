@@ -1,21 +1,30 @@
-/**
- * DAO encargado de las operaciones de la tabla jugador.
- */
 package co.edu.poli.CodigoOculto.Dao;
 
 import co.edu.poli.CodigoOculto.Modelo.Jugador;
 import java.sql.*;
 
+/**
+ * dao encargado de gestionar
+ * las operaciones de la tabla jugador
+ */
 public class JugadorDAO {
 
 	private Connection conexion;
 
+	/**
+	 * recibe y almacena la conexion
+	 * utilizada para las consultas sql
+	 * @param conexion conexion activa
+	 */
 	public JugadorDAO(Connection conexion) {
 		this.conexion = conexion;
 	}
 
 	/**
-	 * Busca un jugador por su ID.
+	 * busca un jugador utilizando
+	 * el id registrado en la base de datos
+	 * @param id identificador del jugador
+	 * @return jugador encontrado o null
 	 */
 	public Jugador buscarJugadorPorId(int id) {
 
@@ -27,7 +36,10 @@ public class JugadorDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				return new Jugador(rs.getInt("id"), rs.getString("nombre"), rs.getInt("puntaje"),
+				return new Jugador(
+						rs.getInt("id"),
+						rs.getString("nombre"),
+						rs.getInt("puntaje"),
 						rs.getBoolean("es_invitado"));
 			}
 
@@ -39,7 +51,10 @@ public class JugadorDAO {
 	}
 
 	/**
-	 * Guarda un nuevo jugador.
+	 * guarda un nuevo jugador dentro
+	 * de la base de datos del sistema
+	 * @param jugador jugador a guardar
+	 * @return true si se guardo correctamente
 	 */
 	public boolean guardarJugador(Jugador jugador) {
 
@@ -55,9 +70,11 @@ public class JugadorDAO {
 
 			if (filas > 0) {
 				ResultSet rs = ps.getGeneratedKeys();
+
 				if (rs.next()) {
 					jugador.setId(rs.getInt(1));
 				}
+
 				return true;
 			}
 
@@ -69,7 +86,10 @@ public class JugadorDAO {
 	}
 
 	/**
-	 * Actualiza el puntaje de un jugador.
+	 * actualiza el puntaje almacenado
+	 * para un jugador especifico
+	 * @param jugador jugador actualizado
+	 * @return true si el cambio fue exitoso
 	 */
 	public boolean actualizarPuntaje(Jugador jugador) {
 
@@ -90,7 +110,10 @@ public class JugadorDAO {
 	}
 
 	/**
-	 * Verifica si existe un jugador con ese nombre.
+	 * verifica si ya existe un jugador
+	 * registrado con el mismo nombre
+	 * @param nombre nombre a validar
+	 * @return true si el nombre existe
 	 */
 	public boolean existeNombre(String nombre) {
 
