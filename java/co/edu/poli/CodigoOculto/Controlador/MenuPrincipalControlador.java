@@ -20,8 +20,9 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 
 /**
- * Controlador del menú principal del sistema. Permite registro de jugadores,
- * inicio de sesión y acceso como invitado.
+ * controlador del menu principal del sistema
+ * permite iniciar sesion registrar jugadores
+ * y acceder como invitado
  */
 public class MenuPrincipalControlador {
 
@@ -34,7 +35,8 @@ public class MenuPrincipalControlador {
 	private JugadorDAO jugadorDAO;
 
 	/**
-	 * Inicializa la conexión con la base de datos y el DAO de jugadores.
+	 * inicializa la conexion con la base de datos
+	 * y crea el dao de jugadores
 	 */
 	@FXML
 	public void initialize() {
@@ -42,8 +44,10 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * Permite iniciar sesión de un jugador mediante su ID. Valida entrada, verifica
-	 * existencia y redirige al menú del juego.
+	 * permite iniciar sesion usando el id del jugador
+	 * valida la informacion ingresada antes de acceder
+	 * al menu principal del juego
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void iniciarSesion(ActionEvent event) {
@@ -75,8 +79,10 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * Registra un nuevo jugador en el sistema validando su nombre. Evita duplicados
-	 * y confirma el registro antes de guardarlo.
+	 * registra un nuevo jugador en el sistema
+	 * verificando que el nombre no exista
+	 * previamente en la base de datos
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void registrarJugador(ActionEvent event) {
@@ -141,7 +147,9 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * Redirige al menú del juego después de un registro exitoso.
+	 * redirige automaticamente al menu del juego
+	 * despues de registrar un jugador nuevo
+	 * @param jugador jugador registrado
 	 */
 	private void irMenuJuegoDesdePopup(Jugador jugador) {
 		try {
@@ -169,7 +177,9 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * Permite ingresar al sistema como jugador invitado.
+	 * permite ingresar al juego como invitado
+	 * sin necesidad de iniciar sesion
+	 * @param event evento generado por el boton
 	 */
 	@FXML
 	public void irAMenuJuego(ActionEvent event) {
@@ -177,7 +187,10 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * Cambia la escena al menú del juego con el jugador indicado.
+	 * cambia la escena actual al menu del juego
+	 * y envia la informacion del jugador
+	 * @param event evento generado
+	 * @param jugador jugador activo
 	 */
 	private void irMenuJuego(ActionEvent event, Jugador jugador) {
 
@@ -200,7 +213,10 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * Muestra un popup de alerta temporal (versión estándar del sistema).
+	 * muestra una alerta temporal en pantalla
+	 * utilizando un mensaje personalizado
+	 * @param titulo titulo de la alerta
+	 * @param mensaje mensaje a mostrar
 	 */
 	private void mostrarAlerta(String titulo, String mensaje) {
 
@@ -223,7 +239,9 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * Muestra un popup temporal con mensaje en pantalla.
+	 * muestra un popup temporal con un mensaje (popup: ventana emergente)
+	 * visible para el usuario
+	 * @param mensaje texto mostrado en pantalla
 	 */
 	private void mostrarPopup(String mensaje) {
 
