@@ -101,7 +101,7 @@
 		<!-- Botón volver -->
 		<Button layoutX="811.0" layoutY="479.0" onAction="#volverMenu"
 			prefHeight="14.0" prefWidth="73.0" text="Volver" textFill="WHITE"
-			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;">
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
