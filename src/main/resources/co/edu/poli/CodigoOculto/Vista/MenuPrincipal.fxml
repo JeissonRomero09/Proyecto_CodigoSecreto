@@ -14,7 +14,7 @@
 
 <!-- Pantalla principal del sistema (login / registro de jugadores) -->
 
-<AnchorPane prefHeight="491.0" prefWidth="914.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.CodigoOculto.Controlador.MenuPrincipalControlador">
+<AnchorPane prefHeight="491.0" prefWidth="914.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.CodigoOculto.Controlador.MenuPrincipalControlador">
 
 	<children>
 
@@ -39,6 +39,9 @@
 			<font>
 				<Font name="Serif Bold" size="14.0" />
 			</font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
 		</Button>
 
 		<!-- Marco visual del campo de nombre -->
@@ -57,14 +60,20 @@
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
 		</TextField>
 
 		<!-- BOTÓN: INICIAR SESIÓN -->
 		<Button layoutX="387.0" layoutY="152.0" onAction="#iniciarSesion" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #287233, #0B2010); -fx-background-radius: 40;" text="Iniciar Sesión" textFill="WHITE">
 
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
 		</Button>
 
 		<!-- Marco visual del campo ID -->
@@ -73,7 +82,7 @@
 		<!-- Etiqueta del campo ID -->
 		<Text fill="WHITE" layoutX="368.0" layoutY="211.0" text="ID :">
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Regular" size="14.0" />
 			</font>
 		</Text>
 
@@ -83,6 +92,9 @@
 			<font>
 				<Font name="MT Extra" size="14.0" />
 			</font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
 		</TextField>
 
 		<!-- TEXTO DE ERROR (VALIDACIONES DE LOGIN/REGISTRO) -->
@@ -97,9 +109,9 @@
 		<Button layoutX="388.0" layoutY="248.0" onAction="#irAMenuJuego" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #287233, #0B2010); -fx-background-radius: 40;" text="Jugar Como Invitado" textFill="WHITE">
 
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
-
+ 
 			<cursor>
 				<Cursor fx:constant="HAND" />
 			</cursor>
