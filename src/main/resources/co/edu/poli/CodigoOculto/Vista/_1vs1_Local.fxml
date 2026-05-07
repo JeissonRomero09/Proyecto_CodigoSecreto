@@ -55,7 +55,7 @@
 		<!-- Botón iniciar partida -->
 		<Button layoutX="394.0" layoutY="176.0"
 			onAction="#iniciarPartida" prefHeight="32.0" prefWidth="157.0"
-			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
 			text="Iniciar Partida J2" textFill="WHITE">
 
 			<font>
@@ -76,7 +76,7 @@
 
 		<TextField fx:id="txtId" layoutX="395.0" layoutY="215.0"
 			prefHeight="32.0" prefWidth="185.0"
-			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40; -fx-text-fill: white; -fx-padding: 8 15 8 15;">
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40; -fx-text-fill: white; -fx-padding: 8 15 8 15;">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -86,7 +86,7 @@
 		<!-- Botón volver -->
 		<Button layoutX="805.0" layoutY="479.0" onAction="#volverMenu"
 			prefHeight="14.0" prefWidth="73.0"
-			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
 			text="Volver" textFill="WHITE">
 
 			<font>
