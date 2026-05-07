@@ -43,7 +43,7 @@
 			wrappingWidth="416.6666946411133">
 
 			<font>
-				<Font name="Consolas" size="16.0" />
+				<Font name="Serif Bold" size="16.0" />
 			</font>
 		</Text>
 
@@ -164,12 +164,12 @@
 		<!-- BOTÓN: VOLVER AL MENÚ -->
 		<Button layoutX="849.0" layoutY="483.0"
 			onAction="#irMenuJugador" prefHeight="25.0" prefWidth="67.0"
-			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f);
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010);
 			       -fx-background-radius: 40;"
 			text="Volver" textFill="WHITE">
 
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
 		</Button>
 
@@ -197,7 +197,7 @@
 			text="30" wrappingWidth="22.666666666666515">
 
 			<font>
-				<Font name="MT Extra" size="20.0" />
+				<Font name="Serif Bold" size="20.0" />
 			</font>
 		</Text>
 
