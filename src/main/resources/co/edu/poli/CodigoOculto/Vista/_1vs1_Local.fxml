@@ -48,7 +48,7 @@
 		<Text fx:id="textoNombre" fill="WHITE" layoutX="770.0"
 			layoutY="450.0" text="Name J1 :">
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
 		</Text>
 
@@ -59,7 +59,7 @@
 			text="Iniciar Partida J2" textFill="WHITE">
 
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
 		</Button>
 
@@ -70,7 +70,7 @@
 
 		<Text fill="WHITE" layoutX="375.0" layoutY="235.0" text="ID :">
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
 		</Text>
 
@@ -79,7 +79,7 @@
 			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40; -fx-text-fill: white; -fx-padding: 8 15 8 15;">
 
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
 		</TextField>
 
@@ -90,7 +90,7 @@
 			text="Volver" textFill="WHITE">
 
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
 		</Button>
 
