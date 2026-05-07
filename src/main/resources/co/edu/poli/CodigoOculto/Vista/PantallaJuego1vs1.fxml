@@ -54,7 +54,7 @@
 		<Text fx:id="txtId" layoutX="104.0" layoutY="78.0"
 			text="Name J1:" wrappingWidth="416.6666946411133">
 			<font>
-				<Font name="Consolas" size="16.0" />
+				<Font name="Serif Bold" size="16.0" />
 			</font>
 		</Text>
 
@@ -166,10 +166,10 @@
 		</GridPane>
 		<Button layoutX="464.0" layoutY="26.0"
 			onAction="#irMenuJugador" prefHeight="25.0" prefWidth="67.0"
-			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
 			text="Volver" textFill="WHITE">
 			<font>
-				<Font name="MT Extra" size="14.0" />
+				<Font name="Serif Bold" size="14.0" />
 			</font>
 		</Button>
 
@@ -308,13 +308,13 @@
 		<Text fx:id="txtId1" fill="WHITE" layoutX="565.0" layoutY="78.0"
 			text="Name J2:" wrappingWidth="416.6666946411133">
 			<font>
-				<Font name="Consolas" size="16.0" />
+				<Font name="Serif Bold" size="16.0" />
 			</font>
 		</Text>
 		<Text fx:id="txtId12" fill="RED" layoutX="384.0" layoutY="48.0"
 			text="30" wrappingWidth="22.666666666666515">
 			<font>
-				<Font name="MT Extra" size="20.0" />
+				<Font name="Serif Bold" size="20.0" />
 			</font>
 		</Text>
 		<ImageView fx:id="imgJugador2" fitHeight="49.0"
