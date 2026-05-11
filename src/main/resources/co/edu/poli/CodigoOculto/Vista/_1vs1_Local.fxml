@@ -95,14 +95,17 @@
 		</Button>
 
 <!-- Boton Como Jugar -->
-<Button layoutX="394.0" layoutY="131.0" onAction="#iniciarPartida" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;" text="Como Jugar" textFill="WHITE">
-         <font>
-            <Font name="Serif Bold" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
+<Button layoutX="394.0" layoutY="135.0" onAction="#irAComoJugar" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;" text="Como Jugar" textFill="WHITE">
+
+			<font>
+				<Font name="Serif Bold" size="12.0" />
+			</font>
+
+			<cursor>
+				<Cursor fx:constant="HAND" />
+			</cursor>
+
+		</Button>
 
 	</children>
 </AnchorPane>
