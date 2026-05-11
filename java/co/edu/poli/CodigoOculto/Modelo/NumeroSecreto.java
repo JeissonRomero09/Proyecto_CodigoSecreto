@@ -3,9 +3,8 @@ package co.edu.poli.CodigoOculto.Modelo;
 import java.util.Random;
 
 /**
- * clase encargada de generar
- * y almacenar el numero secreto
- * utilizado durante la partida
+ * clase encargada de generar y almacenar el numero secreto utilizado durante la
+ * partida
  */
 public class NumeroSecreto {
 
@@ -13,10 +12,9 @@ public class NumeroSecreto {
 	private int longitud;
 
 	/**
-	 * constructor que inicializa
-	 * la longitud del codigo secreto
-	 * y genera automaticamente
-	 * la combinacion aleatoria
+	 * constructor que inicializa la longitud del codigo secreto y genera
+	 * automaticamente la combinacion aleatoria
+	 * 
 	 * @param longitud tamaño del codigo
 	 */
 	public NumeroSecreto(int longitud) {
@@ -25,9 +23,8 @@ public class NumeroSecreto {
 	}
 
 	/**
-	 * genera una combinacion aleatoria
-	 * utilizando numeros entre 1 y 9
-	 * segun la longitud indicada
+	 * genera una combinacion aleatoria utilizando numeros entre 1 y 9 segun la
+	 * longitud indicada
 	 */
 	public void generarCombinacion() {
 
@@ -41,8 +38,8 @@ public class NumeroSecreto {
 	}
 
 	/**
-	 * retorna la combinacion secreta
-	 * generada para la partida
+	 * retorna la combinacion secreta generada para la partida
+	 * 
 	 * @return arreglo con la combinacion
 	 */
 	public int[] getCombinacion() {
@@ -50,8 +47,8 @@ public class NumeroSecreto {
 	}
 
 	/**
-	 * retorna la longitud definida
-	 * para el numero secreto
+	 * retorna la longitud definida para el numero secreto
+	 * 
 	 * @return tamaño del codigo
 	 */
 	public int getLongitud() {

@@ -20,8 +20,8 @@ import javafx.scene.layout.StackPane;
 import javafx.geometry.Pos;
 
 /**
- * controlador del menu principal del juego
- * gestiona la navegacion y la sesion del jugador
+ * controlador del menu principal del juego gestiona la navegacion y la sesion
+ * del jugador
  */
 public class MenuJuegoControlador {
 
@@ -36,8 +36,8 @@ public class MenuJuegoControlador {
 	private Connection conexion = ConexionBD.conectar();
 
 	/**
-	 * asigna el jugador actual y actualiza
-	 * la informacion mostrada en pantalla
+	 * asigna el jugador actual y actualiza la informacion mostrada en pantalla
+	 * 
 	 * @param jugador jugador activo
 	 */
 	public void setJugador(Jugador jugador) {
@@ -46,8 +46,8 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * inicializa el controlador al cargar la vista
-	 * y establece la conexion con la base de datos
+	 * inicializa el controlador al cargar la vista y establece la conexion con la
+	 * base de datos
 	 */
 	@FXML
 	public void initialize() {
@@ -56,8 +56,8 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * redirige a la pantalla de como jugar
-	 * manteniendo la informacion del jugador
+	 * redirige a la pantalla de como jugar manteniendo la informacion del jugador
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -67,8 +67,9 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * inicia una nueva partida del juego
-	 * y envia los datos necesarios al controlador
+	 * inicia una nueva partida del juego y envia los datos necesarios al
+	 * controlador
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -78,12 +79,7 @@ public class MenuJuegoControlador {
 
 					controller.setJugador(jugador);
 
-					controller.setPartida(
-							new Partida(
-									jugador,
-									new NumeroSecreto(5)
-							)
-					);
+					controller.setPartida(new Partida(jugador, new NumeroSecreto(5)));
 
 					controller.setConexion(conexion);
 				});
@@ -91,6 +87,7 @@ public class MenuJuegoControlador {
 
 	/**
 	 * abre el modo de juego local uno contra uno
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -100,8 +97,9 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * abre la pantalla de historial del jugador
-	 * y valida que no sea un usuario invitado
+	 * abre la pantalla de historial del jugador y valida que no sea un usuario
+	 * invitado
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -145,8 +143,8 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * cierra la sesion actual del jugador
-	 * y regresa al menu principal
+	 * cierra la sesion actual del jugador y regresa al menu principal
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -164,11 +162,11 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * cambia la escena actual y envia
-	 * informacion al nuevo controlador
-	 * @param event evento generado
+	 * cambia la escena actual y envia informacion al nuevo controlador
+	 * 
+	 * @param event    evento generado
 	 * @param rutaFXML ruta de la vista fxml
-	 * @param setter metodo para enviar datos
+	 * @param setter   metodo para enviar datos
 	 */
 	private <T> void cambiarEscena(ActionEvent event, String rutaFXML, ControllerSetter<T> setter) {
 		try {
@@ -191,16 +189,14 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * interfaz utilizada para enviar datos
-	 * al controlador de la nueva escena
+	 * interfaz utilizada para enviar datos al controlador de la nueva escena
 	 */
 	private interface ControllerSetter<T> {
 		void set(T controller);
 	}
 
 	/**
-	 * actualiza los textos del jugador
-	 * mostrados dentro de la interfaz
+	 * actualiza los textos del jugador mostrados dentro de la interfaz
 	 */
 	private void actualizarTexto() {
 		if (jugador != null) {
@@ -215,6 +211,7 @@ public class MenuJuegoControlador {
 
 	/**
 	 * retorna el jugador actual de la sesion
+	 * 
 	 * @return jugador activo
 	 */
 	public Jugador getJugador() {
@@ -222,8 +219,8 @@ public class MenuJuegoControlador {
 	}
 
 	/**
-	 * muestra un mensaje emergente en pantalla
-	 * durante unos segundos
+	 * muestra un mensaje emergente en pantalla durante unos segundos
+	 * 
 	 * @param mensaje texto a mostrar
 	 */
 	private void mostrarPopup(String mensaje) {

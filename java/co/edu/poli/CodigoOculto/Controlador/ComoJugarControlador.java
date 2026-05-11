@@ -10,8 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * controlador de la vista como jugar
- * permite volver al menu principal
+ * controlador de la vista como jugar permite volver al menu principal
  */
 public class ComoJugarControlador {
 

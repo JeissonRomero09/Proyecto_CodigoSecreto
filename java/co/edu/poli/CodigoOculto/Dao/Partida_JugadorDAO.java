@@ -3,18 +3,17 @@ package co.edu.poli.CodigoOculto.Dao;
 import java.sql.*;
 
 /**
- * dao encargado de gestionar
- * la relacion entre partidas
- * jugadores y estadisticas
+ * dao encargado de gestionar la relacion entre partidas jugadores y
+ * estadisticas
  */
 public class Partida_JugadorDAO {
 
 	private Connection conexion;
 
 	/**
-	 * recibe la conexion utilizada
-	 * para realizar operaciones sql
-	 * sobre la base de datos
+	 * recibe la conexion utilizada para realizar operaciones sql sobre la base de
+	 * datos
+	 * 
 	 * @param conexion conexion activa
 	 */
 	public Partida_JugadorDAO(Connection conexion) {
@@ -22,9 +21,9 @@ public class Partida_JugadorDAO {
 	}
 
 	/**
-	 * guarda el resultado obtenido
-	 * por un jugador en una partida
-	 * especifica del sistema
+	 * guarda el resultado obtenido por un jugador en una partida especifica del
+	 * sistema
+	 * 
 	 * @param partidaId id de la partida
 	 * @param jugadorId id del jugador
 	 * @param resultado resultado obtenido
@@ -50,9 +49,8 @@ public class Partida_JugadorDAO {
 	}
 
 	/**
-	 * cuenta la cantidad total
-	 * de partidas jugadas por
-	 * un jugador especifico
+	 * cuenta la cantidad total de partidas jugadas por un jugador especifico
+	 * 
 	 * @param jugadorId id del jugador
 	 * @return total de partidas jugadas
 	 */
@@ -76,9 +74,8 @@ public class Partida_JugadorDAO {
 	}
 
 	/**
-	 * cuenta la cantidad total
-	 * de victorias registradas
-	 * para un jugador
+	 * cuenta la cantidad total de victorias registradas para un jugador
+	 * 
 	 * @param jugadorId id del jugador
 	 * @return total de victorias
 	 */
@@ -102,9 +99,8 @@ public class Partida_JugadorDAO {
 	}
 
 	/**
-	 * cuenta la cantidad total
-	 * de derrotas registradas
-	 * para un jugador
+	 * cuenta la cantidad total de derrotas registradas para un jugador
+	 * 
 	 * @param jugadorId id del jugador
 	 * @return total de derrotas
 	 */
@@ -128,9 +124,8 @@ public class Partida_JugadorDAO {
 	}
 
 	/**
-	 * calcula el porcentaje de
-	 * victorias obtenidas por
-	 * un jugador registrado
+	 * calcula el porcentaje de victorias obtenidas por un jugador registrado
+	 * 
 	 * @param jugadorId id del jugador
 	 * @return porcentaje de victorias
 	 */

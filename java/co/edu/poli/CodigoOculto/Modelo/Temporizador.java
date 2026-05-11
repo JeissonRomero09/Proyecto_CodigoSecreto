@@ -48,10 +48,7 @@ public class Temporizador {
 	/**
 	 * Retorna el tiempo en formato de dos dígitos.
 	 * 
-	 * Ejemplo:
-	 * 05
-	 * 18
-	 * 30
+	 * Ejemplo: 05 18 30
 	 */
 	public String getTiempoFormateado() {
 

@@ -32,12 +32,15 @@
 			</image>
 		</ImageView>
 
-		<!-- BOTÓN: REGISTRAR JUGADOR -->
-		<Button layoutX="388.0" layoutY="63.0" onAction="#registrarJugador" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #287233, #0B2010); -fx-background-radius: 40;" text="Registrarse" textFill="#fafafa">
+	<!-- BOTÓN: REGISTRAR JUGADOR -->
+	<Button layoutX="388.0" layoutY="63.0"
+		onAction="#registrarJugador" prefHeight="32.0" prefWidth="157.0"
+		style="-fx-background-color: linear-gradient(to bottom, #287233, #0B2010); -fx-background-radius: 40;"
+		text="Registrarse" textFill="#fafafa">
 
-			<!-- Estilo de fuente del botón -->
-			<font>
-				<Font name="Serif Bold" size="14.0" />
+		<!-- Estilo de fuente del botón -->
+		<font>
+			<Font name="Serif Bold" size="14.0" />
 			</font>
          <cursor>
             <Cursor fx:constant="HAND" />

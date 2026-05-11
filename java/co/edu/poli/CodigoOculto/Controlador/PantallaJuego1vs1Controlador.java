@@ -34,8 +34,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 /**
- * controlador del modo de juego uno contra uno
- * administra los turnos el temporizador y el estado de la partida
+ * controlador del modo de juego uno contra uno administra los turnos el
+ * temporizador y el estado de la partida
  */
 public class PantallaJuego1vs1Controlador {
 

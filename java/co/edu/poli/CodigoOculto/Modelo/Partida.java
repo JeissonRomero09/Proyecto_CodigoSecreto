@@ -24,10 +24,10 @@ public class Partida {
 	private Jugador jugador;
 
 	/**
-	 * inicializa la partida con
-	 * el jugador y el numero secreto
-	 * utilizado durante el juego
-	 * @param jugador jugador actual
+	 * inicializa la partida con el jugador y el numero secreto utilizado durante el
+	 * juego
+	 * 
+	 * @param jugador       jugador actual
 	 * @param numeroSecreto codigo secreto
 	 */
 	public Partida(Jugador jugador, NumeroSecreto numeroSecreto) {

@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- * clase encargada de administrar
- * la conexion con la base de datos
+ * clase encargada de administrar la conexion con la base de datos
  */
 public class ConexionBD {
 
@@ -14,9 +13,9 @@ public class ConexionBD {
 	private static final String PASSWORD = "";
 
 	/**
-	 * establece y retorna una conexion
-	 * activa con la base de datos mysql
-	 * utilizada por el sistema
+	 * establece y retorna una conexion activa con la base de datos mysql utilizada
+	 * por el sistema
+	 * 
 	 * @return conexion activa a la bd
 	 */
 	public static Connection conectar() {

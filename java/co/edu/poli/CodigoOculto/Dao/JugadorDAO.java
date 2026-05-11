@@ -4,16 +4,15 @@ import co.edu.poli.CodigoOculto.Modelo.Jugador;
 import java.sql.*;
 
 /**
- * dao encargado de gestionar
- * las operaciones de la tabla jugador
+ * dao encargado de gestionar las operaciones de la tabla jugador
  */
 public class JugadorDAO {
 
 	private Connection conexion;
 
 	/**
-	 * recibe y almacena la conexion
-	 * utilizada para las consultas sql
+	 * recibe y almacena la conexion utilizada para las consultas sql
+	 * 
 	 * @param conexion conexion activa
 	 */
 	public JugadorDAO(Connection conexion) {
@@ -21,8 +20,8 @@ public class JugadorDAO {
 	}
 
 	/**
-	 * busca un jugador utilizando
-	 * el id registrado en la base de datos
+	 * busca un jugador utilizando el id registrado en la base de datos
+	 * 
 	 * @param id identificador del jugador
 	 * @return jugador encontrado o null
 	 */
@@ -36,10 +35,7 @@ public class JugadorDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				return new Jugador(
-						rs.getInt("id"),
-						rs.getString("nombre"),
-						rs.getInt("puntaje"),
+				return new Jugador(rs.getInt("id"), rs.getString("nombre"), rs.getInt("puntaje"),
 						rs.getBoolean("es_invitado"));
 			}
 
@@ -51,8 +47,8 @@ public class JugadorDAO {
 	}
 
 	/**
-	 * guarda un nuevo jugador dentro
-	 * de la base de datos del sistema
+	 * guarda un nuevo jugador dentro de la base de datos del sistema
+	 * 
 	 * @param jugador jugador a guardar
 	 * @return true si se guardo correctamente
 	 */
@@ -86,8 +82,8 @@ public class JugadorDAO {
 	}
 
 	/**
-	 * actualiza el puntaje almacenado
-	 * para un jugador especifico
+	 * actualiza el puntaje almacenado para un jugador especifico
+	 * 
 	 * @param jugador jugador actualizado
 	 * @return true si el cambio fue exitoso
 	 */
@@ -110,8 +106,8 @@ public class JugadorDAO {
 	}
 
 	/**
-	 * verifica si ya existe un jugador
-	 * registrado con el mismo nombre
+	 * verifica si ya existe un jugador registrado con el mismo nombre
+	 * 
 	 * @param nombre nombre a validar
 	 * @return true si el nombre existe
 	 */

@@ -1,8 +1,7 @@
 package co.edu.poli.CodigoOculto.Modelo;
 
 /**
- * clase que representa a un jugador
- * dentro del sistema del juego
+ * clase que representa a un jugador dentro del sistema del juego
  */
 public class Jugador {
 
@@ -12,20 +11,18 @@ public class Jugador {
 	private boolean esInvitado;
 
 	/**
-	 * constructor vacio utilizado
-	 * para crear objetos sin datos
-	 * iniciales del jugador
+	 * constructor vacio utilizado para crear objetos sin datos iniciales del
+	 * jugador
 	 */
 	public Jugador() {
 	}
 
 	/**
-	 * constructor utilizado para
-	 * cargar datos provenientes
-	 * de la base de datos
-	 * @param id identificador del jugador
-	 * @param nombre nombre del jugador
-	 * @param puntaje puntaje acumulado
+	 * constructor utilizado para cargar datos provenientes de la base de datos
+	 * 
+	 * @param id         identificador del jugador
+	 * @param nombre     nombre del jugador
+	 * @param puntaje    puntaje acumulado
 	 * @param esInvitado indica si es invitado
 	 */
 	public Jugador(int id, String nombre, int puntaje, boolean esInvitado) {
@@ -36,9 +33,8 @@ public class Jugador {
 	}
 
 	/**
-	 * verifica si el jugador actual
-	 * corresponde a un invitado
-	 * dentro del sistema
+	 * verifica si el jugador actual corresponde a un invitado dentro del sistema
+	 * 
 	 * @return true si es invitado
 	 */
 	public boolean esInvitado() {
@@ -46,9 +42,8 @@ public class Jugador {
 	}
 
 	/**
-	 * constructor utilizado para
-	 * crear un nuevo jugador
-	 * registrado en el sistema
+	 * constructor utilizado para crear un nuevo jugador registrado en el sistema
+	 * 
 	 * @param nombre nombre del jugador
 	 */
 	public Jugador(String nombre) {
@@ -58,9 +53,8 @@ public class Jugador {
 	}
 
 	/**
-	 * crea y retorna un jugador
-	 * temporal de tipo invitado
-	 * para jugar sin registro
+	 * crea y retorna un jugador temporal de tipo invitado para jugar sin registro
+	 * 
 	 * @return jugador invitado
 	 */
 	public static Jugador crearInvitado() {
@@ -77,6 +71,7 @@ public class Jugador {
 
 	/**
 	 * retorna el id del jugador
+	 * 
 	 * @return id del jugador
 	 */
 	public int getId() {
@@ -85,6 +80,7 @@ public class Jugador {
 
 	/**
 	 * asigna el id del jugador
+	 * 
 	 * @param id nuevo id
 	 */
 	public void setId(int id) {
@@ -93,6 +89,7 @@ public class Jugador {
 
 	/**
 	 * retorna el nombre del jugador
+	 * 
 	 * @return nombre del jugador
 	 */
 	public String getNombre() {
@@ -101,6 +98,7 @@ public class Jugador {
 
 	/**
 	 * asigna el nombre del jugador
+	 * 
 	 * @param nombre nuevo nombre
 	 */
 	public void setNombre(String nombre) {
@@ -108,8 +106,8 @@ public class Jugador {
 	}
 
 	/**
-	 * retorna el puntaje acumulado
-	 * del jugador
+	 * retorna el puntaje acumulado del jugador
+	 * 
 	 * @return puntaje del jugador
 	 */
 	public int getPuntaje() {
@@ -117,8 +115,8 @@ public class Jugador {
 	}
 
 	/**
-	 * asigna un nuevo puntaje
-	 * al jugador actual
+	 * asigna un nuevo puntaje al jugador actual
+	 * 
 	 * @param puntaje nuevo puntaje
 	 */
 	public void setPuntaje(int puntaje) {
@@ -126,8 +124,8 @@ public class Jugador {
 	}
 
 	/**
-	 * indica si el jugador
-	 * fue creado como invitado
+	 * indica si el jugador fue creado como invitado
+	 * 
 	 * @return true si es invitado
 	 */
 	public boolean isEsInvitado() {
@@ -135,8 +133,8 @@ public class Jugador {
 	}
 
 	/**
-	 * cambia el estado de invitado
-	 * del jugador actual
+	 * cambia el estado de invitado del jugador actual
+	 * 
 	 * @param esInvitado nuevo estado
 	 */
 	public void setEsInvitado(boolean esInvitado) {

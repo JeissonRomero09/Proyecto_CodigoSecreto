@@ -20,9 +20,8 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 
 /**
- * controlador del menu principal del sistema
- * permite iniciar sesion registrar jugadores
- * y acceder como invitado
+ * controlador del menu principal del sistema permite iniciar sesion registrar
+ * jugadores y acceder como invitado
  */
 public class MenuPrincipalControlador {
 
@@ -35,8 +34,7 @@ public class MenuPrincipalControlador {
 	private JugadorDAO jugadorDAO;
 
 	/**
-	 * inicializa la conexion con la base de datos
-	 * y crea el dao de jugadores
+	 * inicializa la conexion con la base de datos y crea el dao de jugadores
 	 */
 	@FXML
 	public void initialize() {
@@ -44,9 +42,9 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * permite iniciar sesion usando el id del jugador
-	 * valida la informacion ingresada antes de acceder
-	 * al menu principal del juego
+	 * permite iniciar sesion usando el id del jugador valida la informacion
+	 * ingresada antes de acceder al menu principal del juego
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -79,9 +77,9 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * registra un nuevo jugador en el sistema
-	 * verificando que el nombre no exista
+	 * registra un nuevo jugador en el sistema verificando que el nombre no exista
 	 * previamente en la base de datos
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -147,8 +145,9 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * redirige automaticamente al menu del juego
-	 * despues de registrar un jugador nuevo
+	 * redirige automaticamente al menu del juego despues de registrar un jugador
+	 * nuevo
+	 * 
 	 * @param jugador jugador registrado
 	 */
 	private void irMenuJuegoDesdePopup(Jugador jugador) {
@@ -177,8 +176,8 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * permite ingresar al juego como invitado
-	 * sin necesidad de iniciar sesion
+	 * permite ingresar al juego como invitado sin necesidad de iniciar sesion
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -187,9 +186,9 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * cambia la escena actual al menu del juego
-	 * y envia la informacion del jugador
-	 * @param event evento generado
+	 * cambia la escena actual al menu del juego y envia la informacion del jugador
+	 * 
+	 * @param event   evento generado
 	 * @param jugador jugador activo
 	 */
 	private void irMenuJuego(ActionEvent event, Jugador jugador) {
@@ -213,34 +212,9 @@ public class MenuPrincipalControlador {
 	}
 
 	/**
-	 * muestra una alerta temporal en pantalla
-	 * utilizando un mensaje personalizado
-	 * @param titulo titulo de la alerta
-	 * @param mensaje mensaje a mostrar
-	 */
-	private void mostrarAlerta(String titulo, String mensaje) {
-
-		Stage popup = new Stage();
-		popup.initStyle(StageStyle.UNDECORATED);
-
-		Label texto = new Label(mensaje);
-		texto.setStyle("-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;");
-
-		StackPane root = new StackPane(texto);
-		root.setAlignment(Pos.CENTER);
-		root.setStyle("-fx-background-color: rgba(0,0,0,0.8); -fx-padding: 30;");
-
-		Scene scene = new Scene(root);
-		popup.setScene(scene);
-
-		PauseTransition pausa = new PauseTransition(Duration.seconds(2));
-		pausa.setOnFinished(e -> popup.close());
-		pausa.play();
-	}
-
-	/**
-	 * muestra un popup temporal con un mensaje (popup: ventana emergente)
-	 * visible para el usuario
+	 * muestra un popup temporal con un mensaje (popup: ventana emergente) visible
+	 * para el usuario
+	 * 
 	 * @param mensaje texto mostrado en pantalla
 	 */
 	private void mostrarPopup(String mensaje) {

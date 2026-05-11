@@ -11,14 +11,11 @@ public class Validacion {
 	 * 
 	 * Retorna un arreglo con los siguientes estados:
 	 * 
-	 * VERDE:
-	 * Número correcto en la posición correcta.
+	 * VERDE: Número correcto en la posición correcta.
 	 * 
-	 * AMARILLO:
-	 * Número existente en la combinación pero en otra posición.
+	 * AMARILLO: Número existente en la combinación pero en otra posición.
 	 * 
-	 * GRIS:
-	 * Número que no existe en la combinación secreta.
+	 * GRIS: Número que no existe en la combinación secreta.
 	 */
 	public static String[] validar(int[] intento, int[] combinacion) {
 
@@ -39,8 +36,7 @@ public class Validacion {
 		}
 
 		/**
-		 * Primera validación:
-		 * Detecta coincidencias exactas (VERDE).
+		 * Primera validación: Detecta coincidencias exactas (VERDE).
 		 */
 		for (int i = 0; i < n; i++) {
 
@@ -53,8 +49,7 @@ public class Validacion {
 		}
 
 		/**
-		 * Segunda validación:
-		 * Detecta números existentes en otra posición (AMARILLO).
+		 * Segunda validación: Detecta números existentes en otra posición (AMARILLO).
 		 */
 		for (int i = 0; i < n; i++) {
 

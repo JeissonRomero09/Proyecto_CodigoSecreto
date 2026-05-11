@@ -12,7 +12,9 @@
 
 <!-- Contenedor principal de la pantalla del menú del juego -->
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.CodigoOculto.Controlador.MenuJuegoControlador">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="co.edu.poli.CodigoOculto.Controlador.MenuJuegoControlador">
 
 	<children>
 
@@ -24,21 +26,26 @@
 		</ImageView>
 
 		<!-- Cuadro decorativo central -->
-		<ImageView fitHeight="272.0" fitWidth="278.0" layoutX="331.0" layoutY="53.0" opacity="0.88">
+		<ImageView fitHeight="272.0" fitWidth="278.0"
+			layoutX="331.0" layoutY="53.0" opacity="0.88">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Cuadro1.png" />
 			</image>
 		</ImageView>
 
 		<!-- Cuadro decorativo inferior derecho -->
-		<ImageView fitHeight="111.0" fitWidth="187.0" layoutX="738.0" layoutY="406.0" opacity="0.88">
+		<ImageView fitHeight="111.0" fitWidth="187.0"
+			layoutX="738.0" layoutY="406.0" opacity="0.88">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Cuadro1.png" />
 			</image>
 		</ImageView>
 
 		<!-- BOTÓN: INICIAR JUEGO INDIVIDUAL -->
-		<Button layoutX="391.0" layoutY="103.0" onAction="#irAPantallaJuego" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;" text="Jugar Solo" textFill="WHITE">
+		<Button layoutX="391.0" layoutY="103.0"
+			onAction="#irAPantallaJuego" prefHeight="32.0" prefWidth="157.0"
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
+			text="Jugar Solo" textFill="WHITE">
 
 			<!-- Fuente del texto del botón -->
 			<font>
@@ -52,7 +59,8 @@
 		</Button>
 
 		<!-- TEXTO: ID DEL JUGADOR -->
-		<Text fx:id="textoId" fill="WHITE" layoutX="766.0" layoutY="437.0" text="ID :">
+		<Text fx:id="textoId" fill="WHITE" layoutX="766.0"
+			layoutY="437.0" text="ID :">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -60,7 +68,8 @@
 		</Text>
 
 		<!-- TEXTO: NOMBRE DEL JUGADOR -->
-		<Text fx:id="textoNombre" fill="WHITE" layoutX="766.0" layoutY="459.0" text="Name :">
+		<Text fx:id="textoNombre" fill="WHITE" layoutX="766.0"
+			layoutY="459.0" text="Name :">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -68,7 +77,10 @@
 		</Text>
 
 		<!-- BOTÓN: MODO 1 VS 1 LOCAL -->
-		<Button layoutX="391.0" layoutY="149.0" onAction="#irA1vs1Local" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;" text="1vs1 (Local)" textFill="WHITE">
+		<Button layoutX="391.0" layoutY="149.0"
+			onAction="#irA1vs1Local" prefHeight="32.0" prefWidth="157.0"
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
+			text="1vs1 (Local)" textFill="WHITE">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -80,7 +92,10 @@
 		</Button>
 
 		<!-- BOTÓN: VER HISTORIAL DEL JUGADOR -->
-		<Button layoutX="391.0" layoutY="196.0" onAction="#irAHistorial" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;" text="Ver historial" textFill="WHITE">
+		<Button layoutX="391.0" layoutY="196.0"
+			onAction="#irAHistorial" prefHeight="32.0" prefWidth="157.0"
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
+			text="Ver historial" textFill="WHITE">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -92,7 +107,10 @@
 		</Button>
 
 		<!-- BOTÓN: INSTRUCCIONES DEL JUEGO -->
-		<Button layoutX="391.0" layoutY="242.0" onAction="#irAComoJugar" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;" text="Como Jugar" textFill="WHITE">
+		<Button layoutX="391.0" layoutY="242.0"
+			onAction="#irAComoJugar" prefHeight="32.0" prefWidth="157.0"
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
+			text="Como Jugar" textFill="WHITE">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -104,7 +122,10 @@
 		</Button>
 
 		<!-- BOTÓN: CERRAR SESIÓN -->
-		<Button layoutX="766.0" layoutY="472.0" onAction="#cerrarSesion" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;" text="Cerrar Sesión" textFill="WHITE">
+		<Button layoutX="766.0" layoutY="472.0"
+			onAction="#cerrarSesion" prefHeight="25.0" prefWidth="131.0"
+			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
+			text="Cerrar Sesión" textFill="WHITE">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -116,7 +137,8 @@
 		</Button>
 
 		<!-- IMAGEN DEL TÍTULO DEL JUEGO -->
-		<ImageView fitHeight="156.0" fitWidth="269.0" layoutX="348.0" layoutY="300.0">
+		<ImageView fitHeight="156.0" fitWidth="269.0"
+			layoutX="348.0" layoutY="300.0">
 
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Titulo.png" />

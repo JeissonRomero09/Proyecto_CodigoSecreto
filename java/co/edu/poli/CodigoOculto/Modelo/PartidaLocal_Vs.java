@@ -3,9 +3,8 @@ package co.edu.poli.CodigoOculto.Modelo;
 import java.util.Random;
 
 /**
- * modelo encargado de gestionar
- * la logica del modo 1 vs 1 local
- * entre dos jugadores
+ * modelo encargado de gestionar la logica del modo 1 vs 1 local entre dos
+ * jugadores
  */
 public class PartidaLocal_Vs {
 
@@ -23,21 +22,16 @@ public class PartidaLocal_Vs {
 	private Jugador ganador;
 
 	/**
-	 * estados posibles utilizados
-	 * durante la validacion inicial
-	 * de la partida
+	 * estados posibles utilizados durante la validacion inicial de la partida
 	 */
 	public enum EstadoInicio {
-		OK,
-		JUGADOR_NO_EXISTE,
-		MISMO_JUGADOR
+		OK, JUGADOR_NO_EXISTE, MISMO_JUGADOR
 	}
 
 	/**
-	 * valida si ambos jugadores
-	 * cumplen las condiciones
-	 * necesarias para iniciar
-	 * la partida local
+	 * valida si ambos jugadores cumplen las condiciones necesarias para iniciar la
+	 * partida local
+	 * 
 	 * @param j1 jugador 1
 	 * @param j2 jugador 2
 	 * @return estado de validacion
@@ -54,10 +48,9 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * inicializa completamente
-	 * la partida asignando
-	 * jugadores turnos y
-	 * numeros secretos
+	 * inicializa completamente la partida asignando jugadores turnos y numeros
+	 * secretos
+	 * 
 	 * @param j1 jugador 1
 	 * @param j2 jugador 2
 	 */
@@ -66,21 +59,13 @@ public class PartidaLocal_Vs {
 		this.jugador1 = j1;
 		this.jugador2 = j2;
 
-		this.partidaJ1 = new Partida(
-				jugador1,
-				new NumeroSecreto(5)
-		);
+		this.partidaJ1 = new Partida(jugador1, new NumeroSecreto(5));
 
-		this.partidaJ2 = new Partida(
-				jugador2,
-				new NumeroSecreto(5)
-		);
+		this.partidaJ2 = new Partida(jugador2, new NumeroSecreto(5));
 
 		Random r = new Random();
 
-		this.turnoActual = (r.nextBoolean())
-				? jugador1
-				: jugador2;
+		this.turnoActual = (r.nextBoolean()) ? jugador1 : jugador2;
 
 		this.j1YaJugo = false;
 		this.j2YaJugo = false;
@@ -88,20 +73,17 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * retorna la partida que
-	 * corresponde al jugador
-	 * que tiene el turno actual
+	 * retorna la partida que corresponde al jugador que tiene el turno actual
+	 * 
 	 * @return partida activa
 	 */
 	public Partida getPartidaActual() {
-		return (turnoActual == jugador1)
-				? partidaJ1
-				: partidaJ2;
+		return (turnoActual == jugador1) ? partidaJ1 : partidaJ2;
 	}
 
 	/**
-	 * retorna el jugador que
-	 * posee el turno actual
+	 * retorna el jugador que posee el turno actual
+	 * 
 	 * @return jugador actual
 	 */
 	public Jugador getTurnoActual() {
@@ -109,9 +91,9 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * procesa el turno del jugador
-	 * actual evaluando resultados
-	 * cambios de turno y ganador
+	 * procesa el turno del jugador actual evaluando resultados cambios de turno y
+	 * ganador
+	 * 
 	 * @return estado de la partida
 	 */
 	public String jugarTurno() {
@@ -129,8 +111,7 @@ public class PartidaLocal_Vs {
 
 		marcarJugadorActual();
 
-		if (partidaJ1.isJuegoTerminado()
-				&& partidaJ2.isJuegoTerminado()) {
+		if (partidaJ1.isJuegoTerminado() && partidaJ2.isJuegoTerminado()) {
 
 			boolean iguales = comparar();
 
@@ -151,8 +132,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * compara las combinaciones
-	 * secretas de ambos jugadores
+	 * compara las combinaciones secretas de ambos jugadores
+	 * 
 	 * @return true si son iguales
 	 */
 	private boolean comparar() {
@@ -170,9 +151,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * procesa la accion cuando
-	 * el tiempo del jugador
-	 * actual se agota
+	 * procesa la accion cuando el tiempo del jugador actual se agota
+	 * 
 	 * @return estado de la partida
 	 */
 	public String tiempoAgotado() {
@@ -200,9 +180,7 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * marca que el jugador
-	 * actual ya realizo
-	 * su turno en la ronda
+	 * marca que el jugador actual ya realizo su turno en la ronda
 	 */
 	private void marcarJugadorActual() {
 
@@ -216,20 +194,15 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * cambia el turno entre
-	 * ambos jugadores
+	 * cambia el turno entre ambos jugadores
 	 */
 	private void cambiarTurno() {
 
-		turnoActual = (turnoActual == jugador1)
-				? jugador2
-				: jugador1;
+		turnoActual = (turnoActual == jugador1) ? jugador2 : jugador1;
 	}
 
 	/**
-	 * reinicia el estado de
-	 * la ronda y cambia
-	 * el turno inicial
+	 * reinicia el estado de la ronda y cambia el turno inicial
 	 */
 	public void siguienteRonda() {
 
@@ -240,8 +213,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * retorna la partida
-	 * correspondiente al jugador 1
+	 * retorna la partida correspondiente al jugador 1
+	 * 
 	 * @return partida jugador 1
 	 */
 	public Partida getPartidaJ1() {
@@ -249,8 +222,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * retorna la partida
-	 * correspondiente al jugador 2
+	 * retorna la partida correspondiente al jugador 2
+	 * 
 	 * @return partida jugador 2
 	 */
 	public Partida getPartidaJ2() {
@@ -258,8 +231,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * retorna el jugador ganador
-	 * de la partida actual
+	 * retorna el jugador ganador de la partida actual
+	 * 
 	 * @return jugador ganador
 	 */
 	public Jugador getGanador() {
@@ -267,8 +240,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * retorna el jugador 1
-	 * registrado en la partida
+	 * retorna el jugador 1 registrado en la partida
+	 * 
 	 * @return jugador 1
 	 */
 	public Jugador getJugador1() {
@@ -276,8 +249,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * retorna el jugador 2
-	 * registrado en la partida
+	 * retorna el jugador 2 registrado en la partida
+	 * 
 	 * @return jugador 2
 	 */
 	public Jugador getJugador2() {
@@ -285,8 +258,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * retorna la combinacion
-	 * secreta del jugador 1
+	 * retorna la combinacion secreta del jugador 1
+	 * 
 	 * @return codigo jugador 1
 	 */
 	public int[] getCombinacionJ1() {
@@ -294,8 +267,8 @@ public class PartidaLocal_Vs {
 	}
 
 	/**
-	 * retorna la combinacion
-	 * secreta del jugador 2
+	 * retorna la combinacion secreta del jugador 2
+	 * 
 	 * @return codigo jugador 2
 	 */
 	public int[] getCombinacionJ2() {

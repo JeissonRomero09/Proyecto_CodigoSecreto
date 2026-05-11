@@ -7,7 +7,7 @@ import co.edu.poli.CodigoOculto.Dao.PartidaDAO;
 import co.edu.poli.CodigoOculto.Dao.Partida_JugadorDAO;
 
 import java.util.Arrays;
-import java.util.Optional;
+
 import java.sql.Connection;
 
 import javafx.animation.PauseTransition;
@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.StackPane;
 import javafx.geometry.Pos;
 
@@ -36,12 +36,8 @@ import javafx.scene.Parent;
 import javafx.scene.input.KeyCode;
 import javafx.application.Platform;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-
 /**
- * controlador encargado de administrar
- * la logica del modo de juego individual
+ * controlador encargado de administrar la logica del modo de juego individual
  */
 public class PantallaJuegoControlador {
 
@@ -63,8 +59,8 @@ public class PantallaJuegoControlador {
 	private GridPane gridCasillas;
 
 	/**
-	 * recibe la partida actual del juego
-	 * para controlar el progreso del jugador
+	 * recibe la partida actual del juego para controlar el progreso del jugador
+	 * 
 	 * @param partida partida asignada
 	 */
 	public void setPartida(Partida partida) {
@@ -72,8 +68,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * asigna el jugador actual y actualiza
-	 * la informacion mostrada en pantalla
+	 * asigna el jugador actual y actualiza la informacion mostrada en pantalla
+	 * 
 	 * @param jugador jugador activo
 	 */
 	public void setJugador(Jugador jugador) {
@@ -84,8 +80,9 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * asigna la conexion utilizada para guardar
-	 * partidas y resultados en la base de datos
+	 * asigna la conexion utilizada para guardar partidas y resultados en la base de
+	 * datos
+	 * 
 	 * @param conexion conexion activa
 	 */
 	public void setConexion(Connection conexion) {
@@ -94,8 +91,7 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * inicializa el controlador y prepara
-	 * el temporizador y controles del teclado
+	 * inicializa el controlador y prepara el temporizador y controles del teclado
 	 */
 	@FXML
 	public void initialize() {
@@ -109,8 +105,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * guarda el resultado final de la partida
-	 * dentro del historial del jugador
+	 * guarda el resultado final de la partida dentro del historial del jugador
+	 * 
 	 * @param resultado resultado obtenido
 	 */
 	private void guardarHistorial(String resultado) {
@@ -126,8 +122,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * muestra una confirmacion para salir
-	 * de la partida y volver al menu
+	 * muestra una confirmacion para salir de la partida y volver al menu
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -188,8 +184,7 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * configura las teclas utilizadas durante
-	 * la partida para ingresar numeros
+	 * configura las teclas utilizadas durante la partida para ingresar numeros
 	 */
 	private void configurarTeclado() {
 
@@ -246,8 +241,7 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * inicia y controla el temporizador
-	 * utilizado durante la partida
+	 * inicia y controla el temporizador utilizado durante la partida
 	 */
 	private void iniciarTemporizador() {
 
@@ -287,8 +281,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * pinta una fila anulada cuando
-	 * el tiempo del jugador se agota
+	 * pinta una fila anulada cuando el tiempo del jugador se agota
+	 * 
 	 * @param fila fila anulada
 	 */
 	private void pintarFilaAnulada(int fila) {
@@ -305,8 +299,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * pinta las casillas dependiendo
-	 * del resultado obtenido
+	 * pinta las casillas dependiendo del resultado obtenido
+	 * 
 	 * @param resultado arreglo con resultados
 	 */
 	private void pintarResultado(String[] resultado) {
@@ -336,8 +330,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * procesa los botones numericos y enter
-	 * utilizados durante el juego
+	 * procesa los botones numericos y enter utilizados durante el juego
+	 * 
 	 * @param event evento generado por el boton
 	 */
 	@FXML
@@ -378,8 +372,7 @@ public class PantallaJuegoControlador {
 			case "PERDISTE":
 				pintarResultado(partida.getUltimoResultado());
 				guardarHistorial("DERROTA");
-				mostrarAlertaYReiniciar(
-						"PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
+				mostrarAlertaYReiniciar("PERDISTE\nCombinacion: " + Arrays.toString(partida.getCombinacion()));
 				break;
 
 			case "CONTINUA":
@@ -403,8 +396,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * detecta la casilla seleccionada
-	 * y mueve el cursor manualmente
+	 * detecta la casilla seleccionada y mueve el cursor manualmente
+	 * 
 	 * @param event evento generado al hacer click
 	 */
 	@FXML
@@ -424,17 +417,16 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * actualiza el tiempo restante mostrado
-	 * en pantalla durante la partida
+	 * actualiza el tiempo restante mostrado en pantalla durante la partida
 	 */
 	private void actualizarTiempo() {
 		txtId1.setText(temporizador.getTiempoFormateado());
 	}
 
 	/**
-	 * obtiene un boton especifico del tablero
-	 * usando fila y columna
-	 * @param fila fila buscada
+	 * obtiene un boton especifico del tablero usando fila y columna
+	 * 
+	 * @param fila    fila buscada
 	 * @param columna columna buscada
 	 * @return boton encontrado
 	 */
@@ -453,8 +445,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * muestra una alerta corta en pantalla
-	 * durante unos segundos
+	 * muestra una alerta corta en pantalla durante unos segundos
+	 * 
 	 * @param mensaje mensaje mostrado
 	 */
 	private void mostrarAlertaTemporal(String mensaje) {
@@ -480,8 +472,8 @@ public class PantallaJuegoControlador {
 	}
 
 	/**
-	 * muestra el resultado final de la partida
-	 * y luego regresa al menu principal
+	 * muestra el resultado final de la partida y luego regresa al menu principal
+	 * 
 	 * @param mensaje mensaje final mostrado
 	 */
 	private void mostrarAlertaYReiniciar(String mensaje) {
