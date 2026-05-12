@@ -10,12 +10,26 @@ JDK 17 o JDK 21 (recomendado)
 JavaFX SDK compatible
 Eclipse IDE o IntelliJ IDEA
 Configuración correcta de JavaFX en el entorno
+Base de datos correspondiente al proyecto (ver sección de instalación)
 Instalación del proyecto
 Clona el repositorio:
 git clone https://github.com/JeissonRomero09/Proyecto_CodigoSecreto.git
-Abre el proyecto en Eclipse:
+Cambia a la rama donde se encuentra la base de datos:
+git checkout Info
+Importa el proyecto en Eclipse:
 File → Import → Existing Projects into Workspace
 Selecciona la carpeta del proyecto.
+Base de datos
+
+Este proyecto requiere una base de datos para su correcto funcionamiento.
+
+La base de datos se encuentra en la rama: Info
+Debes descargar o revisar los archivos incluidos en dicha rama
+Importa la base de datos en tu gestor (por ejemplo MySQL o el que use el proyecto)
+Configura las credenciales y conexión en el archivo correspondiente del proyecto (clase de conexión)
+
+Sin la base de datos, algunas funcionalidades del sistema no funcionarán correctamente.
+
 Ejecución del proyecto
 Opción 1: Desde Eclipse
 Ubica la clase principal (por ejemplo: Main.java o App.java)
@@ -37,6 +51,7 @@ Vista/ → Archivos FXML (interfaces gráficas)
 Controlador/ → Lógica de la aplicación
 Modelo/ → Clases de datos
 resources/ → Imágenes y estilos
+database/ → Archivos de base de datos (rama Info)
 Ejecución en celular
 
 Este proyecto no se puede ejecutar directamente en dispositivos Android.
