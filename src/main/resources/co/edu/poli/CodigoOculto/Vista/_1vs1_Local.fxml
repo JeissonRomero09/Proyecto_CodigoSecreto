@@ -12,9 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/25"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="co.edu.poli.CodigoOculto.Controlador._1vs1_LocalControlador">
+<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.CodigoOculto.Controlador._1vs1_LocalControlador">
 
 	<children>
 
@@ -26,32 +24,28 @@
 		</ImageView>
 
 		<!-- Cuadro superior -->
-		<ImageView fitHeight="148.0" fitWidth="278.0"
-			layoutX="328.0" layoutY="142.0">
+		<ImageView fitHeight="187.0" fitWidth="278.0" layoutX="328.0" layoutY="103.0">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Cuadro1.png" />
 			</image>
 		</ImageView>
 
 		<!-- Título -->
-		<ImageView fitHeight="156.0" fitWidth="269.0"
-			layoutX="338.0" layoutY="290.0">
+		<ImageView fitHeight="156.0" fitWidth="269.0" layoutX="338.0" layoutY="290.0">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Titulo.png" />
 			</image>
 		</ImageView>
 
 		<!-- Cuadro jugador -->
-		<ImageView fitHeight="111.0" fitWidth="187.0"
-			layoutX="748.0" layoutY="416.0" opacity="0.88">
+		<ImageView fitHeight="111.0" fitWidth="187.0" layoutX="748.0" layoutY="416.0" opacity="0.88">
 			<image>
 				<Image url="@/co/edu/poli/CodigoOculto/Img/Cuadro1.png" />
 			</image>
 		</ImageView>
 
 		<!-- Información jugador 1 -->
-		<Text fx:id="textoNombre" fill="WHITE" layoutX="770.0"
-			layoutY="450.0" text="Name J1 :">
+		<Text fx:id="textoNombre" fill="WHITE" layoutX="770.0" layoutY="450.0" text="Name J1 :">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -60,13 +54,7 @@
 		</Text>
 
 		<!-- Botón iniciar partida -->
-		<Button layoutX="394.0" layoutY="176.0"
-			onAction="#iniciarPartida"
-			prefHeight="32.0"
-			prefWidth="157.0"
-			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
-			text="Iniciar Partida J2"
-			textFill="WHITE">
+		<Button layoutX="394.0" layoutY="176.0" onAction="#iniciarPartida" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;" text="Iniciar Partida J2" textFill="WHITE">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -79,19 +67,9 @@
 		</Button>
 
 		<!-- Campo ID -->
-		<Rectangle arcHeight="40.0"
-			arcWidth="40.0"
-			height="31.0"
-			layoutX="362.0"
-			layoutY="216.0"
-			stroke="BLACK"
-			strokeType="INSIDE"
-			width="139.0" />
+		<Rectangle arcHeight="40.0" arcWidth="40.0" height="31.0" layoutX="362.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" width="139.0" />
 
-		<Text fill="WHITE"
-			layoutX="375.0"
-			layoutY="235.0"
-			text="ID :">
+		<Text fill="WHITE" layoutX="375.0" layoutY="235.0" text="ID :">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -99,12 +77,7 @@
 
 		</Text>
 
-		<TextField fx:id="txtId"
-			layoutX="395.0"
-			layoutY="215.0"
-			prefHeight="32.0"
-			prefWidth="185.0"
-			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40; -fx-text-fill: white; -fx-padding: 8 15 8 15;">
+		<TextField fx:id="txtId" layoutX="395.0" layoutY="215.0" prefHeight="32.0" prefWidth="185.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40; -fx-text-fill: white; -fx-padding: 8 15 8 15;">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -113,14 +86,7 @@
 		</TextField>
 
 		<!-- Botón volver -->
-		<Button layoutX="805.0"
-			layoutY="479.0"
-			onAction="#volverMenu"
-			prefHeight="14.0"
-			prefWidth="73.0"
-			style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;"
-			text="Volver"
-			textFill="WHITE">
+		<Button layoutX="805.0" layoutY="479.0" onAction="#volverMenu" prefHeight="14.0" prefWidth="73.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;" text="Volver" textFill="WHITE">
 
 			<font>
 				<Font name="Serif Bold" size="14.0" />
@@ -133,14 +99,7 @@
 		</Button>
 
 		<!-- Botón Como Jugar -->
-		<Button layoutX="394.0"
-			layoutY="135.0"
-			onAction="#irAComoJugar"
-			prefHeight="32.0"
-			prefWidth="157.0"
-			style="-fx-background-color: linear-gradient(#4b4b4b, #1f1f1f); -fx-background-radius: 40;"
-			text="Como Jugar"
-			textFill="WHITE">
+		<Button layoutX="394.0" layoutY="135.0" onAction="#irAComoJugar" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: linear-gradient(to bottom, #24422D, #0B2010); -fx-background-radius: 40;" text="Como Jugar" textFill="WHITE">
 
 			<font>
 				<Font name="Serif Bold" size="12.0" />
